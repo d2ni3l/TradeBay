@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import Search from "../search/Search";
 import MenuBar from "./MenuBar";
 import Container from "../Container";
+import { Separator } from "@/components/ui/separator";
 export default function Navbar() {
   return (
     <nav className='bg-[#3adbb9]'>
@@ -22,6 +23,7 @@ export default function Navbar() {
         <div className='pb-3'></div>
       </div>
      </Container>
+     <Separator className="my-4" />
     </nav>
   );
 }

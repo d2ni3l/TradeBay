@@ -11,7 +11,7 @@ export default function Search() {
         id='searchProducts'
       />
 
-      <IoMdSearch size={25} className='absolute top-[6px] right-[13px] text-gray-400' />
+      <IoMdSearch size={25} className='absolute top-[9px] right-[13px] text-gray-400' />
       </div>
     </>
   );

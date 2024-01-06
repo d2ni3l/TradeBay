@@ -1,5 +1,7 @@
 import React from "react";
 import { RiMenu3Fill } from "react-icons/ri";
+import { MdLogout } from "react-icons/md";
+import { FaCartShopping } from "react-icons/fa6";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,17 +17,18 @@ export default function MenuBar() {
         <DropdownMenu>
           <DropdownMenuTrigger className='outline-none'>
             {" "}
-            <RiMenu3Fill size='35' className='text-white' />
+            <RiMenu3Fill size={22} className='text-white' />
           </DropdownMenuTrigger>
 
           
           <DropdownMenuContent >
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel className='flex gap-2 items-center'><p>My Cart</p> <FaCartShopping className='text-black'/> </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuItem>Subscription</DropdownMenuItem>
+            <DropdownMenuItem>lorem</DropdownMenuItem>
+            <DropdownMenuItem>lorem</DropdownMenuItem>
+            <DropdownMenuLabel className='flex gap-2 items-center'><p>Logout</p> <MdLogout className='text-red-500'/> </DropdownMenuLabel>
+
           </DropdownMenuContent>
          
         </DropdownMenu>
