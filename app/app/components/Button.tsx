@@ -8,6 +8,7 @@ interface Button {
   label?: string;
   className: string;
   iconSize?: number;
+  labelClassName?:string
 }
 
 export default function Button({
@@ -16,10 +17,11 @@ export default function Button({
   label,
   className,
   iconSize,
+  labelClassName
 }: Button) {
   return (
     <button className={twMerge(`  bg-black text-white `, className)}>
-      {label && <p>{label}</p>} {Icon && <Icon size={iconSize} />}
+      {label && <span className={twMerge('', labelClassName)}>{label}</span>} {Icon && <Icon size={iconSize} />}
     </button>
   );
 }
