@@ -20,17 +20,18 @@ export default function MenuBar() {
             <RiMenu3Fill size={22} className='text-white' />
           </DropdownMenuTrigger>
 
-          
-          <DropdownMenuContent >
-            <DropdownMenuLabel className='flex gap-2 items-center'><p>My Cart</p> <FaCartShopping className='text-black'/> </DropdownMenuLabel>
+          <DropdownMenuContent>
+            <DropdownMenuLabel className='flex gap-2 items-center'>
+              <p>My Cart</p> <FaCartShopping className='text-black' />{" "}
+            </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Profile</DropdownMenuItem>
             <DropdownMenuItem>lorem</DropdownMenuItem>
             <DropdownMenuItem>lorem</DropdownMenuItem>
-            <DropdownMenuLabel className='flex gap-2 items-center'><p>Logout</p> <MdLogout className='text-red-500'/> </DropdownMenuLabel>
-
+            <DropdownMenuLabel className='flex gap-2 items-center'>
+              <p>Logout</p> <MdLogout className='text-red-500' />{" "}
+            </DropdownMenuLabel>
           </DropdownMenuContent>
-         
         </DropdownMenu>
       </div>
     </>
