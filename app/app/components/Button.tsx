@@ -20,7 +20,7 @@ export default function Button({
   labelClassName
 }: Button) {
   return (
-    <button className={twMerge(`  bg-black text-white `, className)}>
+    <button className={twMerge(`  bg-black text-white hover:scale-[.9] transition-all duration-300 focus:scale-[.9]`, className)}>
       {label && <span className={twMerge('', labelClassName)}>{label}</span>} {Icon && <Icon size={iconSize} />}
     </button>
   );
