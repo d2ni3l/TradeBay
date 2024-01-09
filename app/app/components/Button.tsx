@@ -6,7 +6,8 @@ interface Button {
   bgColor?: string;
   icon?: IconType;
   label?: string;
-  className: string;
+  className?: string;
+  onClick?: () => void,
   iconSize?: number;
   labelClassName?:string
 }
@@ -17,10 +18,11 @@ export default function Button({
   label,
   className,
   iconSize,
-  labelClassName
+  labelClassName,
+  onClick
 }: Button) {
   return (
-    <button className={twMerge(`  bg-black text-white hover:scale-[.9] transition-all duration-300 focus:scale-[.9]`, className)}>
+    <button onClick={onClick} className={twMerge(`  bg-black text-white hover:scale-[.9] transition-all duration-300 focus:scale-[.9]`, className)}>
       {label && <span className={twMerge('', labelClassName)}>{label}</span>} {Icon && <Icon size={iconSize} />}
     </button>
   );
