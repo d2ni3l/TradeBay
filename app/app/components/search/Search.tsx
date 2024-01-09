@@ -2,6 +2,7 @@
 
 import React, { createRef, useRef, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
+import Input from "../Inputs/Input";
 export default function Search() {
   const [focused, setFocused] = useState(false);
 
@@ -11,16 +12,12 @@ export default function Search() {
   return (
     <>
       <div className='relative group'>
-        <input
-          className='bg-gray-100 text-black 
-          md:w-[500px]
-          rounded-full px-5 text-sm py-[.6rem] outline-none border-none placeholder:font-medium placeholder:text-gray-400 w-full '
-          placeholder='Search for products'
-          type='text'
-          id='searchProducts'
-          onFocus={() => {setFocused(true)}}
-          onBlur={() => {setFocused(false)}}
-
+        
+        <Input
+        Icon={IoMdSearch}
+        label='Search for Products'
+        id='search'
+        type='text'
         />
 
         <button>

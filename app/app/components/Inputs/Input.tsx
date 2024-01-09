@@ -8,9 +8,10 @@ interface InputProps {
   type: string;
   id: string;
   Icon?: IconType;
-  classNames: string
+  classNames?: string
+  iconClassNames?: string
 }
-export default function Input({ type, label, id, Icon, classNames }: InputProps) {
+export default function Input({ type, label, id, Icon, classNames, iconClassNames }: InputProps) {
   const [focused, setFocused] = useState(false);
   return (
     <div className='relative'>
@@ -31,9 +32,11 @@ export default function Input({ type, label, id, Icon, classNames }: InputProps)
         }}
       />
       <span 
-            className={`${
-              focused ? "text-gray-600" : "text-gray-400"
-            } absolute top-[9px] right-[13px]`}>{Icon && <Icon size={25}/>}</span>
+            className={twMerge(
+                `${
+                    focused ? "text-gray-600" : "text-gray-400"
+                  } absolute top-[9px] right-[13px]`, iconClassNames
+            )}>{Icon && <Icon size={25}/>}</span>
     </div>
   );
 }

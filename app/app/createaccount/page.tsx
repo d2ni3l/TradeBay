@@ -28,7 +28,8 @@ export default function page() {
           <div className="pt-14"></div>
 
           <div className='space-y-5'>
-            <Input label='Email' classNames='rounded-sm py-5 focus:outline-gray-500' type='text' id='email' Icon={TfiEmail} />
+            <Input label='E-mail' iconClassNames='left-[15px] top-[18px]' classNames='rounded-sm tracking-wide py-5 focus:outline-gray-500 pl-[3.4rem]' type='text' id='email' Icon={TfiEmail} />
+            <Input label='E-mail' iconClassNames='left-[15px] top-[18px]' classNames='rounded-sm tracking-wide py-5 focus:outline-gray-500 pl-[3.4rem]' type='text' id='email' Icon={TfiEmail} />
 
             
           </div>
