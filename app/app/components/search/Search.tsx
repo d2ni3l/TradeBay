@@ -16,19 +16,12 @@ export default function Search() {
         <Input
         Icon={IoMdSearch}
         label='Search for Products'
+        classNames="md:w-[500px]"
         id='search'
         type='text'
         />
 
-        <button>
-          <IoMdSearch
-            tabIndex={0}
-            size={25}
-            className={`${
-              focused ? "text-gray-600" : "text-gray-400"
-            } absolute top-[9px] right-[13px]`}
-          />
-        </button>
+        
       </div>
     </>
   );
