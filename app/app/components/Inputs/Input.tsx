@@ -3,16 +3,19 @@
 import React, { useState } from "react";
 import { IconType } from "react-icons";
 import { twMerge } from "tailwind-merge";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 interface InputProps {
   label: string;
   type: string;
   id: string;
+  register: UseFormRegister<FieldValues>
   Icon?: IconType;
   classNames?: string
   iconClassNames?: string
   disabled?: string
+  required?: boolean
 }
-export default function Input({ type, label, id, Icon, classNames, iconClassNames, disabled }: InputProps) {
+export default function Input({ type, label, id, Icon, classNames, iconClassNames, required, disabled, register }: InputProps) {
   const [focused, setFocused] = useState(false);
   return (
     <div className='relative w-full'>
@@ -22,6 +25,7 @@ export default function Input({ type, label, id, Icon, classNames, iconClassName
       
         rounded-full px-5 text-sm py-[.6rem] outline-none border-none placeholder:font-medium placeholder:text-gray-400 w-full`, classNames
         )}
+        {...register(id, {required: required})}
         placeholder={label}
         type='text'
         id={id}

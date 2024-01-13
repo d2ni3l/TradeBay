@@ -7,10 +7,27 @@ import { TfiEmail } from "react-icons/tfi";
 import { lemon } from "../layout";
 import { RiLockPasswordLine } from "react-icons/ri";
 import Image from "next/image";
+import { FieldValues, useForm } from "react-hook-form";
 export default function RegisterBox() {
+  const {
+    register,
+    getValues,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<FieldValues>({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+  });
   return (
     <>
-      <div
+      <form
+        onSubmit={handleSubmit((data) => {
+          console.log(data);
+          console.log(errors)
+        })}
         className='bg-white border rounded-md px-10 shadow-lg  w-full
           md:w-4/6
           lg:w-3/6
@@ -26,27 +43,29 @@ export default function RegisterBox() {
           center
         />
         <div className='py-2 flex justify-center'>
-
-        <Image src='/images/logo.svg' alt='Trade Bay logo' width='70' height='70' />
-
+          <Image
+            src='/images/logo.svg'
+            alt='Trade Bay logo'
+            width='70'
+            height='70'
+          />
         </div>
-
-
-
-
-        
 
         <div className='space-y-5 w-full'>
           <Input
+            register={register}
+            required
             label='Name'
             iconClassNames='left-[15px] top-[18px] '
             classNames='rounded-sm tracking-wide py-5 focus:outline-gray-500 pl-[3.4rem] w-full'
             type='text'
-            id='Name'
+            id='name'
             Icon={RiAccountCircleLine}
           />
 
           <Input
+            register={register}
+            required
             label='E-mail'
             iconClassNames='left-[15px] top-[18px]'
             classNames='rounded-sm tracking-wide py-5 focus:outline-gray-500 pl-[3.4rem] w-full'
@@ -56,11 +75,13 @@ export default function RegisterBox() {
           />
 
           <Input
+            register={register}
+            required
             label='Password'
             iconClassNames='left-[15px] top-[18px]'
             classNames='rounded-sm tracking-wide py-5 focus:outline-gray-500 pl-[3.4rem] w-full'
             type='text'
-            id='email'
+            id='password'
             Icon={RiLockPasswordLine}
           />
         </div>
@@ -75,7 +96,7 @@ export default function RegisterBox() {
         />
 
         <div className='pt-8'></div>
-      </div>
+      </form>
     </>
   );
 }
