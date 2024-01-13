@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import { TfiEmail } from "react-icons/tfi";
 import { lemon } from "../layout";
 import { RiLockPasswordLine } from "react-icons/ri";
+import Image from "next/image";
 export default function RegisterBox() {
   return (
     <>
@@ -24,7 +25,13 @@ export default function RegisterBox() {
           subtitle='Welcome to TradeBay'
           center
         />
-        <div className='pt-14'></div>
+        <div className='py-2 flex justify-center'>
+
+        <Image src='/images/logo.svg' alt='Trade Bay logo' width='70' height='70' />
+
+        </div>
+
+
 
 
         
