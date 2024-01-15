@@ -72,7 +72,7 @@ export default function RegisterBox() {
               Icon={RiAccountCircleLine}
             />
             {errors.name && (
-              <span className='text-red-500 pt-2 text-sm'>
+              <span className='text-red-500 pt-2 text-xs'>
                 {errors.name.message as string}
               </span>
             )}
@@ -94,7 +94,7 @@ export default function RegisterBox() {
             />
 
             {errors.email && (
-              <span className='text-red-500 pt-2 text-sm'>
+              <span className='text-red-500 pt-2 text-xs'>
                 {errors.email.message as string}
               </span>
             )}
@@ -116,7 +116,7 @@ export default function RegisterBox() {
             />
 
             {errors.password && (
-              <span className='text-red-500 pt-2 text-sm'>
+              <span className='text-red-500 pt-2 text-xs'>
                 {errors.password.message as string}
               </span>
             )}
