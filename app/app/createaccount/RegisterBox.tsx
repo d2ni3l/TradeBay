@@ -8,10 +8,14 @@ import { lemon } from "../layout";
 import { RiLockPasswordLine } from "react-icons/ri";
 import Image from "next/image";
 import { FieldValues, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { RegisterSchema, RegistrationSchemaType } from "../zodSchema";
+
 export default function RegisterBox() {
+  const disabled = false;
+
   const {
     register,
-    getValues,
     formState: { errors },
     handleSubmit,
   } = useForm<FieldValues>({
@@ -20,13 +24,14 @@ export default function RegisterBox() {
       email: "",
       password: "",
     },
+    resolver: zodResolver(RegisterSchema),
   });
+
   return (
     <>
       <form
         onSubmit={handleSubmit((data) => {
           console.log(data);
-          console.log(errors)
         })}
         className='bg-white border rounded-md px-10 shadow-lg  w-full
           md:w-4/6
@@ -52,43 +57,76 @@ export default function RegisterBox() {
         </div>
 
         <div className='space-y-5 w-full'>
-          <Input
-            register={register}
-            required
-            label='Name'
-            iconClassNames='left-[15px] top-[18px] '
-            classNames='rounded-sm tracking-wide py-5 focus:outline-gray-500 pl-[3.4rem] w-full'
-            type='text'
-            id='name'
-            Icon={RiAccountCircleLine}
-          />
+          <div>
+            <Input
+              disabled={disabled}
+              register={register}
+              required
+              label='Name'
+              iconClassNames='left-[15px] top-[18px] '
+              classNames={`${
+                errors.name ? "outline-red-500" : "focus:outline-gray-500"
+              } rounded-sm tracking-wide py-5 pl-[3.4rem] w-full`}
+              type='text'
+              id='name'
+              Icon={RiAccountCircleLine}
+            />
+            {errors.name && (
+              <span className='text-red-500 pt-2 text-sm'>
+                {errors.name.message as string}
+              </span>
+            )}
+          </div>
 
-          <Input
-            register={register}
-            required
-            label='E-mail'
-            iconClassNames='left-[15px] top-[18px]'
-            classNames='rounded-sm tracking-wide py-5 focus:outline-gray-500 pl-[3.4rem] w-full'
-            type='text'
-            id='email'
-            Icon={TfiEmail}
-          />
+          <div>
+            <Input
+              disabled={disabled}
+              register={register}
+              required
+              label='E-mail'
+              iconClassNames='left-[15px] top-[18px]'
+              classNames={`${
+                errors.email ? "outline-red-500" : "focus:outline-gray-500"
+              } rounded-sm tracking-wide py-5 pl-[3.4rem] w-full`}
+              type='text'
+              id='email'
+              Icon={TfiEmail}
+            />
 
-          <Input
-            register={register}
-            required
-            label='Password'
-            iconClassNames='left-[15px] top-[18px]'
-            classNames='rounded-sm tracking-wide py-5 focus:outline-gray-500 pl-[3.4rem] w-full'
-            type='text'
-            id='password'
-            Icon={RiLockPasswordLine}
-          />
+            {errors.email && (
+              <span className='text-red-500 pt-2 text-sm'>
+                {errors.email.message as string}
+              </span>
+            )}
+          </div>
+
+          <div>
+            <Input
+              disabled={disabled}
+              register={register}
+              required
+              label='Password'
+              iconClassNames='left-[15px] top-[18px]'
+              classNames={`${
+                errors.password ? "outline-red-500" : "focus:outline-gray-500"
+              } rounded-sm tracking-wide py-5 pl-[3.4rem] w-full`}
+              type='text'
+              id='password'
+              Icon={RiLockPasswordLine}
+            />
+
+            {errors.password && (
+              <span className='text-red-500 pt-2 text-sm'>
+                {errors.password.message as string}
+              </span>
+            )}
+          </div>
         </div>
 
         <div className='pt-8'></div>
 
         <Button
+          type='submit'
           className={`relative flex py-3  
            px-4 md:px-0 rounded-sm w-full  items-center justify-center overflow-hidden bg-gray-800  ${lemon.className}`}
           labelClassName='relative z-10 text-xs'

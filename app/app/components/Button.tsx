@@ -10,6 +10,7 @@ interface Button {
   onClick?: () => void,
   iconSize?: number;
   labelClassName?:string
+  type?: 'button' | 'reset' | 'submit'
 }
 
 export default function Button({
@@ -19,10 +20,11 @@ export default function Button({
   className,
   iconSize,
   labelClassName,
-  onClick
+  onClick,
+  type
 }: Button) {
   return (
-    <button onClick={onClick} className={twMerge(`  bg-black text-white hover:scale-[.9] transition-all duration-300 focus:scale-[.9]`, className)}>
+    <button type={type === undefined ? 'button' : type} onClick={onClick} className={twMerge(`  bg-black text-white hover:scale-[.9] transition-all duration-300 focus:scale-[.9]`, className)}>
       {label && <span className={twMerge('', labelClassName)}>{label}</span>} {Icon && <Icon size={iconSize} />}
     </button>
   );

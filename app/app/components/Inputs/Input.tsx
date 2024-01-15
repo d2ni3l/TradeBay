@@ -12,7 +12,7 @@ interface InputProps {
   Icon?: IconType;
   classNames?: string
   iconClassNames?: string
-  disabled?: string
+  disabled: boolean
   required?: boolean
 }
 export default function Input({ type, label, id, Icon, classNames, iconClassNames, required, disabled, register }: InputProps) {
@@ -21,18 +21,20 @@ export default function Input({ type, label, id, Icon, classNames, iconClassName
     <div className='relative w-full'>
       <input
         className={twMerge(
-            `bg-gray-100 text-black 
-      
+            `
+           
+            bg-gray-100 text-black 
         rounded-full px-5 text-sm py-[.6rem] outline-none border-none placeholder:font-medium placeholder:text-gray-400 w-full`, classNames
         )}
         {...register(id, {required: required})}
         placeholder={label}
         type='text'
         id={id}
+        
         onFocus={() => {
           setFocused(true);
         }}
-        // disabled={disabled}
+        disabled={disabled}
         onBlur={() => {
           setFocused(false);
         }}
@@ -41,7 +43,7 @@ export default function Input({ type, label, id, Icon, classNames, iconClassName
             className={twMerge(
                 `${
                     focused ? "text-gray-600" : "text-gray-400"
-                  } absolute top-[9px] right-[13px] max-w-[50px]`, iconClassNames
+                  }  absolute top-[9px] right-[13px] max-w-[50px]`, iconClassNames
             )}>{Icon && <Icon size={25}/>}</span>
     </div>
   );
