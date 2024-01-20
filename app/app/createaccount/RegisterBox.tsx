@@ -11,8 +11,9 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterSchema, RegistrationSchemaType } from "../zodSchema";
 import axios from "axios";
+import toast from "react-hot-toast";
+import { useMutation } from "react-query";
 export default function RegisterBox() {
-  const disabled = false;
 
   const {
     register,
@@ -27,8 +28,19 @@ export default function RegisterBox() {
     resolver: zodResolver(RegisterSchema),
   });
 
+  const post = (data: FieldValues) => {
+    return axios.post("/api/register", data);
+  };
+  const { mutate, isLoading } = useMutation(post, {
+    onSuccess: () => {
+      toast.success("Signed up");
+    },
+    onError: () => {
+      toast.error("Something went wrong");
+    },
+  });
   const onSubmit = handleSubmit((data) => {
-    axios.post("/api/register", data);
+    mutate(data);
   });
 
   return (
@@ -59,9 +71,10 @@ export default function RegisterBox() {
         </div>
 
         <div className='space-y-5 w-full'>
+
           <div>
             <Input
-              disabled={disabled}
+              disabled={isLoading}
               register={register}
               required
               label='Name'
@@ -82,7 +95,7 @@ export default function RegisterBox() {
 
           <div>
             <Input
-              disabled={disabled}
+              disabled={isLoading}
               register={register}
               required
               label='E-mail'
@@ -101,10 +114,9 @@ export default function RegisterBox() {
               </span>
             )}
           </div>
-
           <div>
             <Input
-              disabled={disabled}
+              disabled={isLoading}
               register={register}
               required
               label='Password'
