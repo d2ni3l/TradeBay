@@ -7,10 +7,10 @@ import { TfiEmail } from "react-icons/tfi";
 import { lemon } from "../layout";
 import { RiLockPasswordLine } from "react-icons/ri";
 import Image from "next/image";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterSchema, RegistrationSchemaType } from "../zodSchema";
-
+import axios from "axios";
 export default function RegisterBox() {
   const disabled = false;
 
@@ -27,12 +27,14 @@ export default function RegisterBox() {
     resolver: zodResolver(RegisterSchema),
   });
 
+  const onSubmit = handleSubmit((data) => {
+    axios.post("/api/register", data);
+  });
+
   return (
     <>
       <form
-        onSubmit={handleSubmit((data) => {
-          console.log(data);
-        })}
+        onSubmit={onSubmit}
         className='bg-white border rounded-md px-10 shadow-lg  w-full
           md:w-4/6
           lg:w-3/6
