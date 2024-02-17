@@ -1,7 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-
 //npx prisma db push - apply changes in this schema file to database
 generator client {
   provider = "prisma-client-js"
@@ -12,44 +11,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-
 model User {
-
   // schema like this for social login
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  email   String?   @unique
-  name    String?
-  emailVerified DateTime?
-  image String?
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  email          String?   @unique
+  name           String?
+  emailVerified  DateTime?
+  image          String?
   hashedPassword String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  favoriteIds String[] @db.ObjectId
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  favoriteIds    String[]  @db.ObjectId
 
-
-
-
-accounts Account[]
-article Article[]
- 
-  
+  accounts Account[]
+  article  Article[]
 }
 
-
 model Account {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId             String   @db.ObjectId
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.String
-  access_token       String?  @db.String
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.String
-  session_state      String?
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -57,14 +47,14 @@ model Account {
 }
 
 model Article {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
   description String
-  imageSrc String
-  createdAt DateTime @default(now())
-  category  String
-  userId String @db.ObjectId
-  price Int
+  imageSrc    String
+  createdAt   DateTime @default(now())
+  category    String
+  userId      String   @db.ObjectId
+  price       Int
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

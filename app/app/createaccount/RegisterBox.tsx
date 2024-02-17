@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Heading from "../components/Heading";
 import Input from "../components/Inputs/Input";
@@ -7,14 +9,17 @@ import { TfiEmail } from "react-icons/tfi";
 import { lemon } from "../layout";
 import { RiLockPasswordLine } from "react-icons/ri";
 import Image from "next/image";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterSchema, RegistrationSchemaType } from "../zodSchema";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useMutation } from "react-query";
+import { useRouter } from "next/navigation";
 export default function RegisterBox() {
 
+  const router = useRouter()
   const {
     register,
     formState: { errors },
@@ -34,12 +39,17 @@ export default function RegisterBox() {
   const { mutate, isLoading } = useMutation(post, {
     onSuccess: () => {
       toast.success("Signed up");
+
+      setTimeout(() => {
+        router.push('/')
+      }, 1000);
     },
     onError: () => {
       toast.error("Something went wrong");
     },
   });
   const onSubmit = handleSubmit((data) => {
+    console.log(data);
     mutate(data);
   });
 
@@ -71,7 +81,6 @@ export default function RegisterBox() {
         </div>
 
         <div className='space-y-5 w-full'>
-
           <div>
             <Input
               disabled={isLoading}
