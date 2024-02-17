@@ -12,8 +12,9 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema,  } from "../zodSchema";
-
+import {signIn} from 'next-auth/react'
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 export default function LoginBox() {
 
 
@@ -36,7 +37,22 @@ export default function LoginBox() {
  
 const onSubmit = handleSubmit((data) => {
     console.log(data)
+
+    signIn('credentials',
+    {...data, redirect: false
+   })
+   .then((callback) => {
+       if (callback?.error) {
+           toast.error(callback.error)
+       }
+ 
+       if(callback?.ok && !callback?.error) {
+           toast.success('Logged in successfully!')
+       }
+   } )
 })
+
+
   return (
     <>
       <form
