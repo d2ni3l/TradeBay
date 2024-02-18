@@ -36,8 +36,6 @@ export default function LoginBox() {
 
  
 const onSubmit = handleSubmit((data) => {
-    console.log(data)
-
     signIn('credentials',
     {...data, redirect: false
    })
