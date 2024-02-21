@@ -8,7 +8,7 @@ import { TfiEmail } from "react-icons/tfi";
 import { lemon } from "../layout";
 import { RiLockPasswordLine } from "react-icons/ri";
 import Image from "next/image";
-import { FieldValues, SubmitHandler } from "react-hook-form";
+import { FieldValues} from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema,  } from "../zodSchema";

@@ -31,6 +31,8 @@ export const authOptions : NextAuthOptions = {
             }
         });
 
+    
+
 
         if (!user){
             throw new Error('Account not found')

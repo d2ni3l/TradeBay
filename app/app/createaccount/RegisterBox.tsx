@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Heading from "../components/Heading";
 import Input from "../components/Inputs/Input";
 import { RiAccountCircleLine } from "react-icons/ri";
@@ -13,16 +13,17 @@ import { FieldValues } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterSchema } from "../zodSchema";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { useMutation } from "react-query";
 import { useRouter } from "next/navigation";
-export default function RegisterBox() {
 
-  const router = useRouter()
+export default function RegisterBox() {
+  const router = useRouter();
   const {
     register,
     formState: { errors },
+    resetField,
     handleSubmit,
   } = useForm<FieldValues>({
     defaultValues: {
@@ -36,20 +37,29 @@ export default function RegisterBox() {
   const post = (data: FieldValues) => {
     return axios.post("/api/register", data);
   };
-  const { mutate, isLoading } = useMutation(post, {
+
+  const { mutate, isLoading, error } = useMutation(post, {
     onSuccess: () => {
       toast.success("Signed up");
 
-      setTimeout(() => {
-        router.push('/')
-      }, 1000);
+      router.push("/");
     },
-    onError: () => {
-      toast.error("Something went wrong");
+
+    onSettled: () => {
+      resetField("name");
+      resetField("email");
+      resetField("password");
     },
   });
+
+  const err = error as any;
+
+  useEffect(() => {
+    if (err) {
+      toast.error(err?.response?.data?.error || "Something went wrong");
+    }
+  }, [error]);
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
     mutate(data);
   });
 
