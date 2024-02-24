@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "./Logo";
 import { RiMenu3Fill } from "react-icons/ri";
+import { useRouter } from "next/navigation";
 
 export default function () {
   return (
@@ -21,11 +22,13 @@ export default function () {
 }
 
 const MenuItem = () => {
+
+  const router = useRouter()
   return (
     <ul className='flex gap-7'>
       {["Privacy policy", "Terms", "Login", "Sign up"].map((item) => {
         return (
-          <li className='font-bold hover:text-black cursor-pointer text-white '>
+          <li onClick={() => {router.push('/home')}}  className='font-bold hover:text-black cursor-pointer text-white'>
             {item}
           </li>
         );

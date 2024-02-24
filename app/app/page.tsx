@@ -38,6 +38,9 @@ export default function Page() {
               className={`relative flex h-[40px] rounded-full w-[120px]  items-center justify-center overflow-hidden  text-white hover:text-[#fb0066] shadow-2xl ${lemon.className}`}
               labelClassName='relative z-10 text-xs mr-1'
               label='Github'
+              onClick={() => {
+                router.push('https://github.com/d2ni3l/TradeBay');
+              }}
               icon={FaGithub}
             />
           </div>
@@ -49,7 +52,7 @@ export default function Page() {
             Technology Stack
           </h2>
           <p className='mt-2 px-4 text-center text-lg text-pink-100'>
-            This social media web app is built using the following modern
+            This market place web app is built using the following modern
             technologies.
           </p>
           <div className='mt-6 grid grid-cols-2 gap-3 px-4  md:grid-cols-3 lg:mx-[20rem]'>
