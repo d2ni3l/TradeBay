@@ -14,7 +14,7 @@ export default function Navbar() {
 
         <div className='flex justify-between items-center'>
             <div className='md:hidden'></div>
-          <Logo />
+          <Logo hideSmallScreen />
 
           <div className="md:hidden">
           <MenuBar />
