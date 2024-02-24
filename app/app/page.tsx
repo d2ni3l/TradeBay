@@ -1,8 +1,21 @@
+"use client";
+
 import Button from "./components/Button";
 import DefaultHeading from "./components/navbar/DefaultHeading";
 import { lemon } from "./layout";
 import { FaGithub } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
+import { SiTypescript } from "react-icons/si";
+import { SiNextdotjs } from "react-icons/si";
+import { IconType } from "react-icons";
+import { FaReact } from "react-icons/fa";
+import { SiPrisma } from "react-icons/si";
+import { SiAuth0 } from "react-icons/si";
+import { SiReactquery } from "react-icons/si";
+import { SiTailwindcss } from "react-icons/si";
+import { SiZod } from "react-icons/si";
 export default function Page() {
+  const router = useRouter();
   return (
     <>
       <DefaultHeading />
@@ -13,13 +26,16 @@ export default function Page() {
           </h1>
           <div className='mt-6 flex justify-center gap-3'>
             <Button
-              className={`relative flex h-[40px] rounded-full w-[120px]  items-center justify-center overflow-hidden bg-[#fb0066] text-white shadow-2xl ${lemon.className}`}
+              onClick={() => {
+                router.push("/home");
+              }}
+              className={`relative flex h-[40px] rounded-full w-[120px]  items-center justify-center overflow-hidden bg-[#fb0066] text-white shadow-2xl hover:bg-black hover:text-[#fb0066] ${lemon.className}`}
               labelClassName='relative z-10 text-xs'
               label='Get Started'
             />
 
             <Button
-              className={`relative flex h-[40px] rounded-full w-[120px]  items-center justify-center overflow-hidden  text-white shadow-2xl ${lemon.className}`}
+              className={`relative flex h-[40px] rounded-full w-[120px]  items-center justify-center overflow-hidden  text-white hover:text-[#fb0066] shadow-2xl ${lemon.className}`}
               labelClassName='relative z-10 text-xs mr-1'
               label='Github'
               icon={FaGithub}
@@ -40,35 +56,49 @@ export default function Page() {
             {[
               {
                 header: "TypeScript",
+                icon: SiTypescript,
                 details:
                   "Strongly-typed code and components for maintainability.",
               },
               {
                 header: "Next.js 14",
+                icon: SiNextdotjs,
                 details:
                   "App router, route handlers, nested layouts, and more.",
               },
-              { header: "React 18", details: "Server and client components." },
+              {
+                header: "React 18",
+                icon: FaReact,
+                details: "Server and client components.",
+              },
               {
                 header: "Prisma",
+                icon: SiPrisma,
                 details: "Type-safe and intuitive database ORM.",
               },
               {
                 header: "NextAuth.js 5",
+                icon: SiAuth0,
                 details: "Secure email and social OAuth logins.",
               },
               {
                 header: "React Query",
+                icon: SiReactquery,
                 details: "Efficient data-fetching and caching.",
               },
               {
                 header: "Tailwind CSS",
+                icon: SiTailwindcss,
                 details: "Utility classes for building components.",
               },
 
-              { header: "Zod", details: "Form input validation." },
-            ].map(({ header, details }) => (
-              <TechStackCard header={header} key={header}>
+              {
+                header: "Zod",
+                icon: SiZod,
+                details: "Form input validation.",
+              },
+            ].map(({ header, details, icon }) => (
+              <TechStackCard header={header} key={header} icon={icon}>
                 {details}
               </TechStackCard>
             ))}
@@ -82,15 +112,19 @@ export default function Page() {
 function TechStackCard({
   header,
   children,
+  icon: Icon,
 }: {
   header: string;
   children: React.ReactNode;
+  icon: IconType;
 }) {
   return (
     <div className='rounded-xl border-2 border-border bg-card p-5'>
-      <h4 className='text-lg font-semibold text-pink-600'>{header}</h4>
+      <h4 className='text-base md:text-lg font-semibold flex items-center gap-2 text-[#fa0066]'>
+        <span>{header}</span> <span>{<Icon />}</span>
+      </h4>
 
-      <p className='text-muted-foreground'>{children}</p>
+      <p className='text-sm md:text-base'>{children}</p>
     </div>
   );
 }

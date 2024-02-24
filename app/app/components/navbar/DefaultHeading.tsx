@@ -25,7 +25,7 @@ const MenuItem = () => {
     <ul className='flex gap-7'>
       {["Privacy policy", "Terms", "Login", "Sign up"].map((item) => {
         return (
-          <li className='font-bold hover:text-black cursor-pointer text-white  '>
+          <li className='font-bold hover:text-black cursor-pointer text-white '>
             {item}
           </li>
         );
