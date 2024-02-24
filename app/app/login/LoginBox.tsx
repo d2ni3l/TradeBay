@@ -8,20 +8,18 @@ import { TfiEmail } from "react-icons/tfi";
 import { lemon } from "../layout";
 import { RiLockPasswordLine } from "react-icons/ri";
 import Image from "next/image";
-import { FieldValues} from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginSchema,  } from "../zodSchema";
-import {signIn} from 'next-auth/react'
+import { LoginSchema } from "../zodSchema";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 export default function LoginBox() {
+  const isLoading = false;
 
+  const router = useRouter();
 
-    const isLoading = false;
-
-  const router = useRouter()
-  
   const {
     register,
     formState: { errors },
@@ -34,26 +32,20 @@ export default function LoginBox() {
     resolver: zodResolver(LoginSchema),
   });
 
- 
-const onSubmit = handleSubmit((data) => {
-    signIn('credentials',
-    {...data, redirect: false
-   })
-   .then((callback) => {
-       if (callback?.error) {
-           toast.error(callback.error)
-       }
- 
-       if(callback?.ok && !callback?.error) {
-           toast.success('Logged in successfully!')
-       }
-   } )
-})
+  const onSubmit = handleSubmit((data) => {
+    signIn("credentials", { ...data, redirect: false }).then((callback) => {
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
 
+      if (callback?.ok && !callback?.error) {
+        toast.success("Logged in successfully!");
+      }
+    });
+  });
 
   return (
     <>
-   
       <form
         onSubmit={onSubmit}
         className='bg-white border rounded-md px-10 shadow-lg  w-full
@@ -66,8 +58,8 @@ const onSubmit = handleSubmit((data) => {
           '>
         <div className='pt-14'></div>
         <Heading
-          title='Create an Account'
-          subtitle='Welcome to TradeBay'
+          title='Welcome back to TradeBay'
+          subtitle='Login with your credentials'
           center
         />
         <div className='py-2 flex justify-center'>

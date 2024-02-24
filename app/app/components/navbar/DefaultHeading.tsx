@@ -2,7 +2,16 @@ import React from "react";
 import Logo from "./Logo";
 import { RiMenu3Fill } from "react-icons/ri";
 import { useRouter } from "next/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
+const DefaultHeadingNavmenu = ["Privacy policy", "Terms", "Login", "Sign up"];
 export default function () {
   return (
     <header className='lg:flex  justify-center pt-3 bg-[#ff85a2] '>
@@ -14,7 +23,21 @@ export default function () {
         </div>
 
         <div className='block lg:hidden'>
-          <RiMenu3Fill size={25} color='white' />
+          <DropdownMenu>
+            <DropdownMenuTrigger className='outline-none'>
+              <RiMenu3Fill size={22} className='text-white' />
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent className='mr-3'>
+              {DefaultHeadingNavmenu.map((item) => {
+                return (
+                  <DropdownMenuItem className='font-medium ' key={item}>
+                    {item}
+                  </DropdownMenuItem>
+                );
+              })}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </nav>
     </header>
@@ -22,13 +45,17 @@ export default function () {
 }
 
 const MenuItem = () => {
-
-  const router = useRouter()
+  const router = useRouter();
   return (
     <ul className='flex gap-7'>
-      {["Privacy policy", "Terms", "Login", "Sign up"].map((item) => {
+      {DefaultHeadingNavmenu.map((item) => {
         return (
-          <li onClick={() => {router.push('/home')}}  className='font-bold hover:text-black cursor-pointer text-white'>
+          <li
+            key={item}
+            onClick={() => {
+              router.push("/home");
+            }}
+            className='font-bold hover:text-black cursor-pointer text-white'>
             {item}
           </li>
         );
