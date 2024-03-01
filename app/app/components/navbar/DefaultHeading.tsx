@@ -6,13 +6,34 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const DefaultHeadingNavmenu = ["Privacy policy", "Terms", "Login", "Sign up"];
+const DefaultHeadingNavmenu = [
+  {
+    label: "Privacy Policy",
+    link: "/privacy-policy",
+  },
+
+  {
+    label: "Terms",
+    link: "/terms",
+  },
+
+  {
+    label: "Login",
+    link: "/login",
+  },
+
+  {
+    label: "Sign Up",
+    link: "/signup",
+  },
+
+  
+];
 export default function () {
+  const router = useRouter();
   return (
     <header className='lg:flex  justify-center pt-3 bg-[#ff85a2] '>
       <nav className='flex justify-between lg:max-w-xl px-5 lg:px-0 gap-10 items-center w-full'>
@@ -31,8 +52,13 @@ export default function () {
             <DropdownMenuContent className='mr-3'>
               {DefaultHeadingNavmenu.map((item) => {
                 return (
-                  <DropdownMenuItem className='font-medium ' key={item}>
-                    {item}
+                  <DropdownMenuItem
+                    onClick={() => {
+                      router.push(item.link);
+                    }}
+                    className='font-medium '
+                    key={item.label}>
+                    {item.label}
                   </DropdownMenuItem>
                 );
               })}
@@ -51,12 +77,12 @@ const MenuItem = () => {
       {DefaultHeadingNavmenu.map((item) => {
         return (
           <li
-            key={item}
+            key={item.label}
             onClick={() => {
-              router.push("/home");
+              router.push(item.link);
             }}
             className='font-bold hover:text-black cursor-pointer text-white'>
-            {item}
+            {item.label}
           </li>
         );
       })}

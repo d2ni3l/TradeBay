@@ -10,7 +10,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {useRouter} from 'next/navigation'
 export default function MenuBar() {
+
+  const router = useRouter()
   return (
     <>
       <div>
@@ -25,9 +28,9 @@ export default function MenuBar() {
               <p>My Cart</p> <FaCartShopping className='text-black' />{" "}
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>lorem</DropdownMenuItem>
-            <DropdownMenuItem>lorem</DropdownMenuItem>
+            <DropdownMenuItem><p onClick={() => {router.push('/privacy-policy')}}>Privacy Policy</p></DropdownMenuItem>
+            <DropdownMenuItem><p onClick={() => {router.push('/terms')}}>Terms</p></DropdownMenuItem>
+            <DropdownMenuItem><p onClick={() => {router.push('/privacy-policy')}}>Login</p></DropdownMenuItem>
             <DropdownMenuLabel className='flex gap-2 items-center'>
               <p>Logout</p> <MdLogout className='text-red-500' />{" "}
             </DropdownMenuLabel>
