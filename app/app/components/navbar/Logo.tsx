@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import React from 'react'
 import { useRouter } from 'next/navigation'
-import { lemon } from '@/app/layout'
+import { lemon } from '@/app/font'
 export default function Logo({textColor, hideSmallScreen} : {textColor? : string, hideSmallScreen? : boolean}) {
   const router = useRouter()
   return (

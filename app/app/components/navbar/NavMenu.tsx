@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../Button";
 import { FaPlus } from "react-icons/fa";
 import { IoMdPerson } from "react-icons/io";
-import { lemon } from "@/app/layout";
+import { lemon } from "@/app/font";
 export default function NavMenu() {
   return (
     <div className='flex justify-center gap-3'>

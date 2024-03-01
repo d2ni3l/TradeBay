@@ -2,7 +2,6 @@
 
 import Button from "./components/Button";
 import DefaultHeading from "./components/navbar/DefaultHeading";
-import { lemon } from "./layout";
 import { FaGithub } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 import { SiTypescript } from "react-icons/si";
@@ -14,6 +13,7 @@ import { SiAuth0 } from "react-icons/si";
 import { SiReactquery } from "react-icons/si";
 import { SiTailwindcss } from "react-icons/si";
 import { SiZod } from "react-icons/si";
+import { lemon } from "./font";
 export default function Page() {
   const router = useRouter();
   return (

@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/navbar/Navbar";
-import { Lemon } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import ReactQueryProvider from "./components/QueryClientProvider";
+import { inter } from "./font";
 
-const inter = Inter({ subsets: ["latin"] });
-export const lemon = Lemon({ subsets: ["latin"], weight: ["400"] });
 
 const metadata: Metadata = {
   title: "Trade Bay",

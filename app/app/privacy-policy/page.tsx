@@ -1,5 +1,5 @@
 import React from "react";
-import { lemon } from "../layout";
+import { lemon } from "../font";
 
 export default function page() {
   return (

@@ -5,7 +5,6 @@ import Heading from "../components/Heading";
 import Input from "../components/Inputs/Input";
 import Button from "../components/Button";
 import { TfiEmail } from "react-icons/tfi";
-import { lemon } from "../layout";
 import { RiLockPasswordLine } from "react-icons/ri";
 import Image from "next/image";
 import { FieldValues } from "react-hook-form";
@@ -15,6 +14,7 @@ import { LoginSchema } from "../zodSchema";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { lemon } from "../font";
 export default function LoginBox() {
   const isLoading = false;
 
