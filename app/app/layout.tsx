@@ -4,7 +4,6 @@ import { Toaster } from "react-hot-toast";
 import ReactQueryProvider from "./components/QueryClientProvider";
 import { inter } from "./font";
 
-
 const metadata: Metadata = {
   title: "Trade Bay",
   description: "The truly free market place",
