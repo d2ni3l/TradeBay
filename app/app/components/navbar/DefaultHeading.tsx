@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import Logo from "./Logo";
 import { RiMenu3Fill } from "react-icons/ri";
@@ -8,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 const DefaultHeadingNavmenu = [
   {
@@ -40,7 +43,7 @@ export default function () {
         <Logo hideSmallScreen={false} textColor='text-white' />
 
         <div className='hidden lg:block '>
-          <MenuItem />
+          <MenuItem router={router} />
         </div>
 
         <div className='block lg:hidden'>
@@ -70,8 +73,7 @@ export default function () {
   );
 }
 
-const MenuItem = () => {
-  const router = useRouter();
+const MenuItem = ({router} :{router: AppRouterInstance}) => {
   return (
     <ul className='flex gap-7'>
       {DefaultHeadingNavmenu.map((item) => {

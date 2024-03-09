@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import { RiMenu3Fill } from "react-icons/ri";
 import { MdLogout } from "react-icons/md";
@@ -14,6 +16,7 @@ import {useRouter} from 'next/navigation'
 export default function MenuBar() {
 
   const router = useRouter()
+  
   return (
     <>
       <div>

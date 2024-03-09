@@ -5,6 +5,7 @@ import MenuBar from "./MenuBar";
 import Container from "../Container";
 import { Separator } from "@/components/ui/separator";
 import NavMenu from "./NavMenu";
+
 export default function Navbar() {
   return (
     <nav className='bg-[#3adbb9] md:bg-white'>
