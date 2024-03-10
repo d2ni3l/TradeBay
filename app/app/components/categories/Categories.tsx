@@ -10,8 +10,10 @@ export default function Categories() {
   const pathName = usePathname();
   const searchParams = useSearchParams();
 
-  //  const category = searchParams.get("category");
-  //  console.log(category)
+   const category = searchParams.get("category");
+    console.log(category)
+
+    // storing and modifying category selection with query params and then updating UI
   return (
     <div className='flex gap-2 py-3 overflow-x-scroll mx-2 noscrollbar'>
       {categoryList.map((item) => {
@@ -21,10 +23,29 @@ export default function Categories() {
             onClick={() => {
               router.push(`${pathName}/?category=${item.label}`);
             }}
-            className='border-2 px-3 py-2 cursor-pointer rounded-md hover:border-[#000] transition-all '>
-            <span className='flex gap-1 items-center text-sm  text-[#4c4c4c] font-medium'>
-              <item.icon size={20} color='#4c4c4c' />
-              {item.label}
+            className={`border-2 px-3 py-2 cursor-pointer rounded-md hover:border-[#000] group transition-all ${
+              item.label === searchParams.get("category") ? "border-[#000]" : ""
+            }`}>
+            <span
+              className={`flex gap-1  items-center text-sm  text-[#4c4c4c] group-hover:text-black font-medium ${
+                item.label === searchParams.get("category") ? "text-black" : ""
+              }`}>
+              <item.icon
+                size={20}
+                className={`group-hover:text-black ${
+                  item.label === searchParams.get("category")
+                    ? "text-black"
+                    : ""
+                }`}
+              />
+              <p
+                className={`group-hover:text-black ${
+                  item.label === searchParams.get("category")
+                    ? "text-black"
+                    : ""
+                }`}>
+                {item.label}
+              </p>
             </span>
           </div>
         );
