@@ -10,8 +10,8 @@ export default function Categories() {
   const pathName = usePathname();
   const searchParams = useSearchParams();
 
-   const category = searchParams.get("category");
-    console.log(category)
+  //  const category = searchParams.get("category");
+  //   console.log(category)
 
     // storing and modifying category selection with query params and then updating UI
   return (

@@ -12,7 +12,7 @@ datasource db {
 }
 
 model User {
-  // schema like this for social login
+  
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
   email          String?   @unique
   name           String?
@@ -28,6 +28,7 @@ model User {
 }
 
 model Account {
+  // schema like this for social login
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
   userId            String  @db.ObjectId
   type              String
@@ -50,11 +51,13 @@ model Article {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
-  imageSrc    String
+  imageSrc    String[]
   createdAt   DateTime @default(now())
   category    String
   userId      String   @db.ObjectId
   price       Int
+  formalPrice String?
+  condition String
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
