@@ -1,6 +1,8 @@
 import React from "react";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { lemon } from "@/app/font";
+import Button from "../Button";
+import Heading from "../Heading";
 interface Modal {
   open: boolean;
   onSubmit?: () => void;
@@ -8,8 +10,8 @@ interface Modal {
   secondaryActionLabel?: string;
   secondaryAction?: () => void;
   body?: React.ReactElement;
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   closeModal?: () => void;
 }
 export default function Modal({
@@ -39,12 +41,12 @@ export default function Modal({
           my-6
           mx-auto 
           px-5
-          
+          border-[#4c4c4c]
           h-full 
           lg:h-auto
           md:h-auto 
           z-[101]'>
-        <div onClick={closeModal} className='flex justify-end pt-2'>
+        <div onClick={closeModal} className='flex justify-end pt-3'>
           <IoMdCloseCircleOutline
             size={27}
             color='black'
@@ -52,15 +54,30 @@ export default function Modal({
           />
         </div>
 
-        <div
-          className={`text-center font-medium text-black text-xl ${lemon.className}`}>
-          {title}
-        </div>
+        {description && <Heading title={title} subtitle={description} center />}
 
-        {description && <p className='text-sm '>{description}</p>}
+        
+
+        {body}
+
+
+        <div className='flex justify-center gap-10'>
+          {secondaryAction && (
+            <Button
+              className={`border-2 border-[#4c4c4c] hover:border-black hover:text-black text-base text-[#4c4c4c]  px-5 py-2 font-medium rounded-md bg-white   transition-all`}
+              labelClassName=''
+              label={secondaryActionLabel}
+              onClick={secondaryAction}
+            />
+          )}
+          <Button
+            className={`border-2 hover:border-[#4c4c4c] border-black text-black text-base hover:text-[#4c4c4c]  px-5 py-2 font-medium rounded-md bg-white   transition-all`}
+            labelClassName=''
+            label={actionLabel}
+            onClick={onSubmit}
+          />
+        </div>
       </div>
     </div>
   );
 }
-
-
