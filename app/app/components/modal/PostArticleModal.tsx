@@ -6,9 +6,11 @@ import { FieldValues, useForm } from "react-hook-form";
 import Input from "../Inputs/Input";
 import { MdOutlineSubtitles } from "react-icons/md";
 import { MdOutlineDescription } from "react-icons/md";
-
+import postArticleModal from "@/app/hooks/postArticleModal";
 export default function PostArticleModal() {
-  const [open, setOpen] = useState(true);
+  const open = postArticleModal((state) => state.open);
+
+  const closeModal = postArticleModal((state) => state.closeModal);
   const disabled = false;
   const {
     register,
@@ -77,8 +79,7 @@ export default function PostArticleModal() {
         title='Post Article'
         description='Best place online to sell things'
         closeModal={() => {
-          setOpen((prev) => (prev = false));
-          console.log("closed modal");
+          closeModal();
         }}
         body={body}
         secondaryActionLabel='Go back'
