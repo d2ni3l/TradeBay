@@ -7,6 +7,12 @@ import Input from "../Inputs/Input";
 import { MdOutlineSubtitles } from "react-icons/md";
 import { MdOutlineDescription } from "react-icons/md";
 import postArticleModal from "@/app/hooks/postArticleModal";
+import ReactSelect from "../Inputs/ReactSelect";
+
+
+const categoryOptions = [
+  {value: 'Home', label: 'Home'}
+]
 export default function PostArticleModal() {
   const open = postArticleModal((state) => state.open);
 
@@ -15,6 +21,7 @@ export default function PostArticleModal() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
     watch,
   } = useForm<FieldValues>({
@@ -23,9 +30,12 @@ export default function PostArticleModal() {
       description: "",
       price: 0,
       condition: "good",
+      category: '',
     },
   });
   console.log(watch());
+
+  
   const body = (
     <>
       <div className='pt-2' />
@@ -70,6 +80,12 @@ export default function PostArticleModal() {
         />
       </div> 
       */}
+      <div className="pt-5"/>
+
+      {/* <ReactSelect
+      
+      options={categoryOptions}
+      /> */}
     </>
   );
   return (

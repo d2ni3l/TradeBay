@@ -1,14 +1,17 @@
-'use client'
+"use client";
 
 import React from "react";
 import Button from "../Button";
 import { FaPlus } from "react-icons/fa";
 import { IoMdPerson } from "react-icons/io";
 import { lemon } from "@/app/font";
+import postArticleModal from "@/app/hooks/postArticleModal";
 export default function NavMenu() {
+  const openModal = postArticleModal((state) => state.openModal);
   return (
     <div className='flex justify-center gap-3'>
       <Button
+        onClick={() => {openModal()}}
         className='bg-white border border-gray-300 p-2 w-10 h-10 rounded-full flex justify-center items-center  text-gray-600'
         iconSize={16}
         icon={FaPlus}

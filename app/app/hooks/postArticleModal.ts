@@ -10,7 +10,7 @@ interface postArticleModalType{
 }
 
 const postArticleModal = create<postArticleModalType>((set) => ({
-    open: true,
+    open: false,
     openModal : () => set({open : true}),
     closeModal : () => set({open : false})
 
