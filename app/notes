@@ -5,4 +5,6 @@ color green-like : 3adbb9
 
 
 
-problem : modal needs to be open from dffrent files that may or may not have the <Modal/> element so i think i need a global state manager for it ...
+difficulties: 
+
+1 comp:ReactSelect cannot use classNames state control of cuz of typescript error  classNames: {{(control : () => void)}}

@@ -8,16 +8,19 @@ import { MdOutlineSubtitles } from "react-icons/md";
 import { MdOutlineDescription } from "react-icons/md";
 import postArticleModal from "@/app/hooks/postArticleModal";
 import ReactSelect from "../Inputs/ReactSelect";
+import { selectCategory } from "../categories/categorieslist";
 
-
-const categoryOptions = [
-  {value: 'Home', label: 'Home'}
-]
 export default function PostArticleModal() {
   const open = postArticleModal((state) => state.open);
 
+  console.log(selectCategory);
+
   const closeModal = postArticleModal((state) => state.closeModal);
   const disabled = false;
+  const [selectValue, setSelectValue] = useState<
+    { value: string | number; label: string | number } | {}
+  >({});
+
   const {
     register,
     handleSubmit,
@@ -30,12 +33,11 @@ export default function PostArticleModal() {
       description: "",
       price: 0,
       condition: "good",
-      category: '',
+      category: "",
     },
   });
-  console.log(watch());
+  console.log(selectValue);
 
-  
   const body = (
     <>
       <div className='pt-2' />
@@ -80,12 +82,18 @@ export default function PostArticleModal() {
         />
       </div> 
       */}
-      <div className="pt-5"/>
+      <div className='pt-5' />
 
-      {/* <ReactSelect
-      
-      options={categoryOptions}
-      /> */}
+      <ReactSelect
+        setState={setSelectValue}
+        options={selectCategory}
+        focusedStateStyle='border-red-500'
+        unFocusedStateStyle=' '
+        // classNames={{
+        //   control: (state) =>
+        //     state.isFocused ? 'border-red-600' : 'border-grey-300',
+        // }}
+      />
     </>
   );
   return (

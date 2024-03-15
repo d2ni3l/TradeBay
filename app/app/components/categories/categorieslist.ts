@@ -11,31 +11,47 @@ export const  categoryList = [
     {
         label: 'Eletronics',
         icon: LuMonitorSmartphone,
+        value: 'eletronics'
     },
 
     {
         label: 'Fashion',
-        icon: SiStylelint
+        icon: SiStylelint,
+        value: 'fashion'
+
+
     },
 
     {
         label: 'Gaming',
-        icon: FaGamepad
+        icon: FaGamepad,
+        value: 'gaming'
     },
     {
         label: 'Home',
-        icon: FaHome
+        icon: FaHome,
+        value: 'home'
+
     },
     {
         label: 'Jewelry',
-        icon: IoDiamondOutline
+        icon: IoDiamondOutline,
+        value: 'jewelry'
     },
     {
         label: 'Travel',
-        icon: MdCardTravel
+        icon: MdCardTravel,
+        value: 'travel'
     },
     {
         label: 'Sport',
-        icon: MdOutlineSportsBasketball
+        icon: MdOutlineSportsBasketball,
+        value: 'sport'
     }
 ]
+
+
+
+export const selectCategory = categoryList.map(({icon, ...rest}) => {
+    return rest
+});
