@@ -28,11 +28,7 @@ export default function Input({
 }: InputProps) {
   const [focused, setFocused] = useState(false);
 
-  if (type === "number") {
-    return <>In put is a number</>;
-  }
-
-  if (type === "text") {
+  
     return (
       <div className='relative w-full'>
         <input
@@ -66,5 +62,4 @@ export default function Input({
         </span>
       </div>
     );
-  }
 }

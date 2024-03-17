@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useCallback } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
@@ -28,18 +28,16 @@ const Counter: React.FC<CounterProps> = ({
     onChange(value - 1);
   }, [onChange, value]);
 
-  return ( 
-    <div className="flex flex-row items-center justify-between">
-      <div className="flex flex-col">
-        <div className="font-medium">{title}</div>
-        <div className="font-light text-gray-600">
-          {subtitle}
-        </div>
+  return (
+    <div className='flex flex-row items-center justify-between'>
+      <div className='flex flex-col'>
+        <div className='font-medium text-[#4c4c4c]'>{title}</div>
+        <div className=' text-gray-600 text-sm'>{subtitle}</div>
       </div>
-      <div className="flex flex-row items-center gap-4">
+      <div className='flex flex-row items-center gap-4'>
         <div
           onClick={onReduce}
-          className="
+          className='
             w-10
             h-10
             rounded-full
@@ -52,22 +50,20 @@ const Counter: React.FC<CounterProps> = ({
             cursor-pointer
             hover:opacity-80
             transition
-          "
-        >
+          '>
           <AiOutlineMinus />
         </div>
-        <div 
-          className="
+        <div
+          className='
             font-light 
             text-xl 
             text-neutral-600
-          "
-        >
-            {value}
-          </div>
+          '>
+          {value}
+        </div>
         <div
           onClick={onAdd}
-          className="
+          className='
             w-10
             h-10
             rounded-full
@@ -80,13 +76,12 @@ const Counter: React.FC<CounterProps> = ({
             cursor-pointer
             hover:opacity-80
             transition
-          "
-        >
+          '>
           <AiOutlinePlus />
         </div>
       </div>
     </div>
-   );
-}
- 
+  );
+};
+
 export default Counter;
