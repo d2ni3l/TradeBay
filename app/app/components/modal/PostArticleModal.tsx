@@ -15,6 +15,8 @@ import Counter from "../Inputs/Counter";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { FaDollarSign } from "react-icons/fa6";
+import ImageUpload from "../Inputs/ImageUpload";
+import Image from "next/image";
 
 export default function PostArticleModal() {
   const open = postArticleModal((state) => state.open);
@@ -25,6 +27,7 @@ export default function PostArticleModal() {
   const disabled = false;
 
   const [priceValue, setPriceValue] = useState<number>(0);
+  const [imageValue, setImageValue] = useState("");
 
   const {
     register,
@@ -36,7 +39,7 @@ export default function PostArticleModal() {
     defaultValues: {
       title: "",
       description: "",
-      price: 0,
+      price: "",
       condition: "",
       category: "",
     },
@@ -52,9 +55,8 @@ export default function PostArticleModal() {
         required
         label='Title'
         iconClassNames=''
-        classNames={`${
-          errors.password ? "outline-red-500" : "focus:outline-gray-500"
-        } rounded-sm tracking-wide py-3  w-full placeholder:text-black`}
+        classNames={`focus:outline-gray-500"
+         rounded-sm tracking-wide py-3  w-full placeholder:text-black`}
         type='text'
         id='title'
         Icon={MdOutlineSubtitles}
@@ -74,20 +76,7 @@ export default function PostArticleModal() {
         id='description'
         Icon={MdOutlineDescription}
       />
-      {/* // build input field for number and for selecting condition of article */}
-      {/* <div className='flex justify-center items-center'>
-        <Input
-          disabled={disabled}
-          register={register}
-          required
-          label='Desc'
-          iconClassNames=''
-          classNames=''
-          type='number'
-          id='price'
-        />
-      </div> 
-      */}
+
       <div className='pt-2' />
 
       <Input
@@ -108,14 +97,20 @@ export default function PostArticleModal() {
       <div className='relative'>
         <Select
           options={selectCategoryUsed}
-          placeholder={ <p className='text-sm text-black'>Select Category</p> }
+          placeholder={
+            <p className='text-sm text-black font-medium'>Select Category</p>
+          }
           styles={{
             control: (baseStyles, state) => ({
               ...baseStyles,
               borderColor: state.isFocused ? "#6b7280" : "",
+              font: "600",
               backgroundColor: "#f3f4f6",
-              padding: "16",
+              paddingLeft: "6px",
             }),
+          }}
+          onChange={(choice) => {
+            setValue("category", choice?.value);
           }}
           theme={(theme) => ({
             ...theme,
@@ -132,7 +127,7 @@ export default function PostArticleModal() {
         />
       </div>
 
-      <div className='py-2'>
+      <div className='pt-3 pb-2'>
         <h2 className=' font-medium'>Condition of Article</h2>
       </div>
       <RadioGroup
@@ -142,25 +137,27 @@ export default function PostArticleModal() {
         }}>
         <div className='flex items-center space-x-2'>
           <RadioGroupItem value='new' id='r1' />
-          <Label htmlFor='r1' className='text-[#4c4c4c]'>
+          <Label htmlFor='r1' className='text-black'>
             New
           </Label>
         </div>
         <div className='flex items-center space-x-2'>
           <RadioGroupItem value='acceptable' id='r2' />
-          <Label htmlFor='r2' className='text-[#4c4c4c]'>
+          <Label htmlFor='r2' className='text-black'>
             Acceptable
           </Label>
         </div>
         <div className='flex items-center space-x-2'>
           <RadioGroupItem value='used' id='r3' />
-          <Label htmlFor='r3' className='text-[#4c4c4c]'>
+          <Label htmlFor='r3' className='text-black'>
             Used
           </Label>
         </div>
       </RadioGroup>
 
       {/* <Counter title='Price' subtitle='How much does your article cost?' value={priceCount} onChange={(value) => {setValue('price', value)}} /> */}
+      <div className='pt-3'></div>
+      <ImageUpload onChange={(value) => setImageValue(value)} />
     </>
   );
   return (
