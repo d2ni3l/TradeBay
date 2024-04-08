@@ -56,12 +56,9 @@ export default function Modal({
 
         {description && <Heading title={title} subtitle={description} center />}
 
-        
-
         {body}
 
-
-        <div className='flex justify-center gap-10'>
+        <div className='flex justify-center gap-10 pb-5'>
           {secondaryAction && (
             <Button
               className={`border-2 border-[#4c4c4c] hover:border-black hover:text-black text-base text-[#4c4c4c]  px-5 py-2 font-medium rounded-md bg-white   transition-all`}

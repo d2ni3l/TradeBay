@@ -17,6 +17,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { FaDollarSign } from "react-icons/fa6";
 import ImageUpload from "../Inputs/ImageUpload";
 import Image from "next/image";
+import { Separator } from "@/components/ui/separator";
 
 export default function PostArticleModal() {
   const open = postArticleModal((state) => state.open);
@@ -27,7 +28,8 @@ export default function PostArticleModal() {
   const disabled = false;
 
   const [priceValue, setPriceValue] = useState<number>(0);
-  const [imageValue, setImageValue] = useState("");
+  const [imageValue, setImageValue] = useState<any>();
+  const [imageSrcs, setImageSrcs] = useState([]);
 
   const {
     register,
@@ -42,10 +44,11 @@ export default function PostArticleModal() {
       price: "",
       condition: "",
       category: "",
+      imgSrc: "",
     },
   });
 
-  console.log(watch());
+  console.log(imageValue);
   const body = (
     <>
       <div className='pt-2' />
@@ -55,8 +58,9 @@ export default function PostArticleModal() {
         required
         label='Title'
         iconClassNames=''
-        classNames={`focus:outline-gray-500"
-         rounded-sm tracking-wide py-3  w-full placeholder:text-black`}
+        classNames={`${
+          errors.password ? "outline-red-500" : "focus:outline-gray-500"
+        } rounded-sm tracking-wide pb-10  w-full placeholder:text-black`}
         type='text'
         id='title'
         Icon={MdOutlineSubtitles}
@@ -87,7 +91,7 @@ export default function PostArticleModal() {
         iconClassNames=''
         classNames={`${
           errors.password ? "outline-red-500" : "focus:outline-gray-500"
-        } rounded-sm tracking-wide  w-full placeholder:text-black`}
+        } rounded-sm tracking-wide pb-10  w-full placeholder:text-black`}
         type='number'
         id='price'
         Icon={FaDollarSign}
@@ -103,10 +107,12 @@ export default function PostArticleModal() {
           styles={{
             control: (baseStyles, state) => ({
               ...baseStyles,
-              borderColor: state.isFocused ? "#6b7280" : "",
+              borderColor: "transparent",
               font: "600",
               backgroundColor: "#f3f4f6",
               paddingLeft: "6px",
+              paddingBlock: "14px",
+              borderRadius: "0",
             }),
           }}
           onChange={(choice) => {
@@ -156,8 +162,10 @@ export default function PostArticleModal() {
       </RadioGroup>
 
       {/* <Counter title='Price' subtitle='How much does your article cost?' value={priceCount} onChange={(value) => {setValue('price', value)}} /> */}
-      <div className='pt-3'></div>
-      <ImageUpload onChange={(value) => setImageValue(value)} />
+
+      <div className='pt-4'></div>
+
+      <ImageUpload onChange={(value) => setValue('image', value)} />
     </>
   );
   return (
@@ -171,7 +179,7 @@ export default function PostArticleModal() {
         }}
         body={body}
         secondaryActionLabel='Go back'
-        actionLabel='Next'
+        actionLabel='Post Article'
       />
     </>
   );
