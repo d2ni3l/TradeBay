@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Modal from "./Modal";
 import { FieldValues, useForm } from "react-hook-form";
 import Select from "react-select";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 import Input from "../Inputs/Input";
 import { MdOutlineSubtitles } from "react-icons/md";
 import { MdOutlineDescription } from "react-icons/md";
@@ -12,12 +13,24 @@ import ReactSelect from "../Inputs/ReactSelect";
 import { selectCategory } from "../categories/categorieslist";
 import { SiGraylog } from "react-icons/si";
 import Counter from "../Inputs/Counter";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { FaDollarSign } from "react-icons/fa6";
 import ImageUpload from "../Inputs/ImageUpload";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
+import Button from "../Button";
 
 export default function PostArticleModal() {
   const open = postArticleModal((state) => state.open);
@@ -27,9 +40,7 @@ export default function PostArticleModal() {
   const closeModal = postArticleModal((state) => state.closeModal);
   const disabled = false;
 
-  const [priceValue, setPriceValue] = useState<number>(0);
   const [imageValue, setImageValue] = useState<any>();
-  const [imageSrcs, setImageSrcs] = useState([]);
 
   const {
     register,
@@ -48,7 +59,6 @@ export default function PostArticleModal() {
     },
   });
 
-  console.log(imageValue);
   const body = (
     <>
       <div className='pt-2' />
@@ -133,8 +143,31 @@ export default function PostArticleModal() {
         />
       </div>
 
-      <div className='pt-3 pb-2'>
-        <h2 className=' font-medium'>Condition of Article</h2>
+      <div className='pt-4 pb-2 flex items-center gap-1'>
+        <h2 className=' font-bold text-lg '>Condition of Article</h2>
+        <span>
+          <Drawer>
+            <DrawerTrigger>
+              <IoMdInformationCircleOutline className='mt-2' />
+            </DrawerTrigger>
+            <DrawerContent className='z-[500] bg-[#09090b] text-white'>
+              <DrawerHeader className='flex justify-center'>
+                <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+                <DrawerDescription className='flex justify-center'>
+                  This action cannot be undone.
+                </DrawerDescription>
+              </DrawerHeader>
+              <DrawerFooter>
+                <DrawerClose>
+                  <Button
+                    className='w-[80%] py-3 bg-white rounded-full text-black'
+                    label='Ok, Got it'
+                  />
+                </DrawerClose>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
+        </span>
       </div>
       <RadioGroup
         defaultValue='new'
@@ -165,7 +198,12 @@ export default function PostArticleModal() {
 
       <div className='pt-4'></div>
 
-      <ImageUpload onChange={(value) => setValue('image', value)} />
+      <div className='p-2'>
+        <h3 className='font-bold text-lg text-center'>
+          Upload an image of your article
+        </h3>
+      </div>
+      <ImageUpload onChange={(value) => setValue("image", value)} />
     </>
   );
   return (

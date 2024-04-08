@@ -58,17 +58,17 @@ export default function Modal({
 
         {body}
 
-        <div className='flex justify-center gap-10 pb-5'>
+        <div className='flex justify-center gap-10 py-5'>
           {secondaryAction && (
             <Button
-              className={`border-2 border-[#4c4c4c] hover:border-black hover:text-black text-base text-[#4c4c4c]  px-5 py-2 font-medium rounded-md bg-white   transition-all`}
+              className={`  hover:border-black hover:text-black text-base text-[#4c4c4c]  py-3 w-[70%] border font-medium rounded-full hover:scale-[0.05] bg-white   transition-all`}
               labelClassName=''
               label={secondaryActionLabel}
               onClick={secondaryAction}
             />
           )}
           <Button
-            className={`border-2 hover:border-[#4c4c4c] border-black text-black text-base hover:text-[#4c4c4c]  px-5 py-2 font-medium rounded-md bg-white   transition-all`}
+            className={`  border-black text-black text-base hover:text-white hover:bg-black  py-3 w-[70%] border font-medium rounded-full hover:scale-[0.98] bg-white   transition-all`}
             labelClassName=''
             label={actionLabel}
             onClick={onSubmit}
