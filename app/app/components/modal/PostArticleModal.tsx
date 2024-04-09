@@ -28,8 +28,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { FaDollarSign } from "react-icons/fa6";
 import ImageUpload from "../Inputs/ImageUpload";
-import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
+
 import Button from "../Button";
 
 export default function PostArticleModal() {
@@ -38,9 +37,8 @@ export default function PostArticleModal() {
   const selectCategoryUsed = [...selectCategory];
 
   const closeModal = postArticleModal((state) => state.closeModal);
-  const disabled = false;
 
-  const [imageValue, setImageValue] = useState<any>();
+  const disabled = false;
 
   const {
     register,
@@ -239,7 +237,10 @@ export default function PostArticleModal() {
     </>
   );
 
-  console.log(watch());
+  const postArticle = handleSubmit((data) => {
+    
+  });
+
   return (
     <>
       <Modal
@@ -252,6 +253,9 @@ export default function PostArticleModal() {
         body={body}
         secondaryActionLabel='Go back'
         actionLabel='Post Article'
+        onSubmit={() => {
+          postArticle();
+        }}
       />
     </>
   );
