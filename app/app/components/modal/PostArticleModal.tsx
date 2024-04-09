@@ -144,23 +144,55 @@ export default function PostArticleModal() {
       </div>
 
       <div className='pt-4 pb-2 flex items-center gap-1'>
-        <h2 className=' font-bold text-lg '>Condition of Article</h2>
+        <h2 className=' font-bold text-lg '>Condition of article</h2>
         <span>
           <Drawer>
             <DrawerTrigger>
               <IoMdInformationCircleOutline className='mt-2' />
             </DrawerTrigger>
-            <DrawerContent className='z-[500] bg-[#09090b] text-white'>
+            <DrawerContent className='z-[500] bg-[#09090b] text-white flex justify-center'>
               <DrawerHeader className='flex justify-center'>
-                <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-                <DrawerDescription className='flex justify-center'>
-                  This action cannot be undone.
-                </DrawerDescription>
+                <DrawerTitle className='text-xl'>
+                  Understanding condition guidelines
+                </DrawerTitle>
               </DrawerHeader>
+
+              <div className='flex flex-col justify-center items-center gap-1'>
+                <div className=' max-w-[350px]'>
+                  <p>
+                    <span className='font-semibold '>New:</span>{" "}
+                    <span className='text-xs text-gray-400'>
+                      Article listed as "New" must be unused, unopened, and in
+                      their original packaging. They should show no signs of
+                      wear or damage.
+                    </span>
+                  </p>
+                </div>
+                <div className=' max-w-[350px]'>
+                  <p>
+                    <span className='font-semibold '>Used:</span>{" "}
+                    <span className='text-xs text-gray-400'>
+                      Article in this condition may have visible signs of wear
+                      and tear but should still function properly.
+                    </span>
+                  </p>
+                </div>
+                <div className=' max-w-[350px]'>
+                  <p>
+                    <span className='font-semibold '>Acceptable:</span>{" "}
+                    <span className='text-xs text-gray-400'>
+                      Article listed as "Acceptable" may have significant
+                      cosmetic damage, such as large scratches or dents.
+                      However, they should still be in good working condition
+                      and should function as intended.
+                    </span>
+                  </p>
+                </div>
+              </div>
               <DrawerFooter>
                 <DrawerClose>
                   <Button
-                    className='w-[80%] py-3 bg-white rounded-full text-black'
+                    className='basis-0 w-[40%] transition-all hover:bg-black outline-none hover:outline-white hover:outline-[1px] hover:scale-[.99]  hover:text-white py-2 bg-white rounded-full text-black'
                     label='Ok, Got it'
                   />
                 </DrawerClose>
@@ -206,6 +238,8 @@ export default function PostArticleModal() {
       <ImageUpload onChange={(value) => setValue("image", value)} />
     </>
   );
+
+  console.log(watch());
   return (
     <>
       <Modal

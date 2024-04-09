@@ -27,9 +27,10 @@ export default function Modal({
 }: Modal) {
   return (
     <div
-      className={`absolute z-[100] bg-black/60 flex justify-center h-[100vh] w-[100vw] items-center ${
+      className={`absolute z-[100] bg-black/60 flex justify-center overflow-x-hidden w-full noscrollbar items-center ${
         open ? " " : "hidden z-0"
       }`}>
+
       <div
         className='bg-white 
         relative 
@@ -41,6 +42,7 @@ export default function Modal({
           my-6
           mx-auto 
           px-5
+          noscrollbar
           border-[#4c4c4c]
           h-full 
           lg:h-auto
@@ -68,7 +70,7 @@ export default function Modal({
             />
           )}
           <Button
-            className={`  border-black text-black text-base hover:text-white hover:bg-black  py-3 w-[70%] border font-medium rounded-full hover:scale-[0.98] bg-white   transition-all`}
+            className={`  border-black text-black text-base hover:text-white hover:bg-black  py-3 w-[70%] border font-medium rounded-full hover:scale-[0.99] bg-white   transition-all`}
             labelClassName=''
             label={actionLabel}
             onClick={onSubmit}
