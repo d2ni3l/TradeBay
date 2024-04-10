@@ -31,7 +31,7 @@ const getCurrentUser = async () => {
       }
 
 
-      // returning user but changing Date properties
+      // returning user object but changing Date properties
       return {
         ...user,
         createdAt : user.createdAt.toISOString(),

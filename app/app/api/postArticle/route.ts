@@ -1,6 +1,6 @@
 import prisma from '@/lib/prismadb'
 import {NextResponse} from 'next/server'
-
+import getCurrentUser from '@/app/actions/getCurrentUser'
 
 
 export default async function  POST(request: Request){
@@ -13,7 +13,30 @@ export default async function  POST(request: Request){
     return NextResponse.error()
   } 
 
-  
+
+
+  const currentUser = await getCurrentUser()
+
+  if(!currentUser){
+    return NextResponse.error()
+  }
+
+  const postArticle = await prisma.article.create({
+    data:{
+      title,
+      description,
+      price,
+      category,
+      imgSrc,
+      condition,
+      userId: currentUser.id
+
+    }
+  })  // creating new article listing
+
+  return NextResponse.json(postArticle)
+
+
 
 
 

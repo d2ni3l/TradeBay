@@ -12,7 +12,6 @@ datasource db {
 }
 
 model User {
-  
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
   email          String?   @unique
   name           String?
@@ -48,15 +47,15 @@ model Account {
 }
 
 model Article {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  userId    String   @db.ObjectId
+
   title       String
   description String
-  imageSrc    String[]
-  createdAt   DateTime @default(now())
-  category    String
-  userId      String   @db.ObjectId
   price       Int
-  formalPrice String?
+  imgSrc    String
+  category  String
   condition String
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
