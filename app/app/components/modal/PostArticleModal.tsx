@@ -30,13 +30,15 @@ import { FaDollarSign } from "react-icons/fa6";
 import ImageUpload from "../Inputs/ImageUpload";
 
 import Button from "../Button";
+import axios from "axios";
 
 export default function PostArticleModal() {
   const open = postArticleModal((state) => state.open);
+  const [missingValue, setMissingValue] = useState(false);
 
   const selectCategoryUsed = [...selectCategory];
 
-  const closeModal = postArticleModal((state) => state.closeModal);
+  const closeModal = postArticleModal((state) => state.closeModal); // global state with zustand
 
   const disabled = false;
 
@@ -51,7 +53,7 @@ export default function PostArticleModal() {
       title: "",
       description: "",
       price: "",
-      condition: "",
+      condition: "new",
       category: "",
       imgSrc: "",
     },
@@ -233,12 +235,39 @@ export default function PostArticleModal() {
           Upload an image of your article
         </h3>
       </div>
-      <ImageUpload onChange={(value) => setValue("image", value)} />
+      <ImageUpload onChange={(value) => setValue("imgSrc", value)} />
+
+      {
+        missingValue ? <p className='pt-1 font-semibold text-sm text-red-500 flex justify-center'>
+        <span>Please complete form</span>
+      </p> : null
+      }
     </>
   );
 
+  console.log(watch())
+  
   const postArticle = handleSubmit((data) => {
-    
+    setMissingValue(false);
+
+    if (
+      !data.title ||
+      !data.description ||
+      !data.price ||
+      !data.condition ||
+      !data.imgSrc ||
+      !data.category
+    ) {
+      setMissingValue(true);
+
+      return null;
+    }
+
+    axios.post("/api/postArticle", data).then((response) => {
+      console.log(response);
+    }).finally(() => {
+
+    })
   });
 
   return (
