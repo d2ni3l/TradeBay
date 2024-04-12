@@ -246,7 +246,7 @@ export default function PostArticleModal() {
   );
 
   console.log(watch())
-  
+
   const postArticle = handleSubmit((data) => {
     setMissingValue(false);
 
@@ -265,6 +265,9 @@ export default function PostArticleModal() {
 
     axios.post("/api/postArticle", data).then((response) => {
       console.log(response);
+      if(response.data?.error){
+        console.log('User needs to sign in')
+      }
     }).finally(() => {
 
     })

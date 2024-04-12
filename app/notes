@@ -7,4 +7,11 @@ color green-like : 3adbb9
 
 difficulties: 
 
-1 comp:ReactSelect cannot use classNames state control of cuz of typescript error  classNames: {{(control : () => void)}}
+auth: /createaccount should send you to /login to enter application
+
+
+
+
+
+
+
