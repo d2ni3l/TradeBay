@@ -7,13 +7,13 @@ import Button from "../Button";
 import { MdError } from "react-icons/md";
 import { FaCircleCheck } from "react-icons/fa6";
 
-
 interface ImageUploadProps {
   onChange: (value: string[]) => void;
 }
 
 export default function ImageUpload({ onChange }: ImageUploadProps) {
   const [successState, setSuccessState] = useState(false);
+  const [bgImg, setbgImg] = useState<string>("");
 
   const [error, setError] = useState(false);
   const uploadPreset = "zvqymuhu";
@@ -21,6 +21,7 @@ export default function ImageUpload({ onChange }: ImageUploadProps) {
   const handleUpload = useCallback(
     (results: any, widget: any) => {
       onChange(results.info.secure_url);
+      setbgImg(results.info.secure_url);
     },
     [onChange]
   );
@@ -44,8 +45,18 @@ export default function ImageUpload({ onChange }: ImageUploadProps) {
               <div
                 onClick={() => open?.()}
                 className='flex items-center justify-center w-full'>
-                <div className='flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600'>
-                  <div className='flex flex-col items-center justify-center pt-5 pb-6'>
+                <div
+                  style={{
+                    backgroundImage: `url(${bgImg})` || 'none',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center center'
+
+                  }}
+                  className='flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600'>
+
+                  <div className={
+                    `flex flex-col items-center justify-center pt-5 pb-6 ${bgImg && 'invisible' } ` 
+                  }>
                     <svg
                       className='w-8 h-8 mb-4 text-gray-500 dark:text-gray-400'
                       aria-hidden='true'
@@ -80,17 +91,18 @@ export default function ImageUpload({ onChange }: ImageUploadProps) {
                     <p className='flex gap-[3px] items-center'>
                       <span>Something went wrong</span>
                       <span>
-                        <MdError size='5'/>
+                        <MdError size='5' />
                       </span>
                     </p>
                   )}
-                  {successState && 
-                  <p className='flex gap-[3px] items-center'>
+                  {successState && (
+                    <p className='flex gap-[3px] items-center'>
                       <span>Image uploaded successfully</span>
                       <span>
                         <FaCircleCheck />
                       </span>
-                    </p>}
+                    </p>
+                  )}
                 </div>
               </div>
             </>
