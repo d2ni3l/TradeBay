@@ -6,8 +6,7 @@ export default async function page() {
 
   const currentUser = await getCurrentUser()
 
-
-  console.log(currentUser)
+console.log(currentUser)
   return (
     <>
       <Navbar />

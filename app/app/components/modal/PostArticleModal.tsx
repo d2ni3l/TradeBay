@@ -9,15 +9,12 @@ import Input from "../Inputs/Input";
 import { MdOutlineSubtitles } from "react-icons/md";
 import { MdOutlineDescription } from "react-icons/md";
 import postArticleModal from "@/app/hooks/postArticleModal";
-import ReactSelect from "../Inputs/ReactSelect";
 import { selectCategory } from "../categories/categorieslist";
-import { SiGraylog } from "react-icons/si";
-import Counter from "../Inputs/Counter";
+import { useMutation } from "react-query";
 import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
@@ -31,6 +28,7 @@ import ImageUpload from "../Inputs/ImageUpload";
 
 import Button from "../Button";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function PostArticleModal() {
   const open = postArticleModal((state) => state.open);
@@ -237,45 +235,46 @@ export default function PostArticleModal() {
       </div>
       <ImageUpload onChange={(value) => setValue("imgSrc", value)} />
 
-      {
-        missingValue ? <p className='pt-1 font-semibold text-sm text-red-500 flex justify-center'>
-        <span>Please complete form</span>
-      </p> : null
-      }
+      {missingValue ? (
+        <p className='pt-1 font-semibold text-sm text-red-500 flex justify-center'>
+          <span>Please complete form</span>
+        </p>
+      ) : null}
     </>
   );
 
-  console.log(watch())
+  const postArticle = (data: FieldValues) => {
+    return axios.post("/api/postArticle", data);
+  };
 
-  const postArticle = handleSubmit((data) => {
-    setMissingValue(false);
-
-    if (
-      !data.title ||
-      !data.description ||
-      !data.price ||
-      !data.condition ||
-      !data.imgSrc ||
-      !data.category
-    ) {
-      setMissingValue(true);
-
-      return null;
+  const { mutate, data, isLoading } = useMutation(postArticle, {
+    onSuccess: () => {
+      console.log(data);
+      toast.success("Article posted");
+      closeModal();
+    },
+    onError: (error) => {
+      console.log(error)
+      toast.error('Something went wrong')
     }
-
-    axios.post("/api/postArticle", data).then((response) => {
-      console.log(response);
-      if(response.data?.error){
-        console.log('User needs to sign in')
-      }
-    }).finally(() => {
-
-    })
   });
+
+ const handleUpload = handleSubmit((data) => {
+  setMissingValue(false);
+
+  if(!data.title || !data.description || !data.imgSrc || !data.price || !data.condition || !data.category){
+    setMissingValue(true)
+
+    return null
+  }
+
+  mutate(data)
+ })
 
   return (
     <>
       <Modal
+        isLoading={isLoading}
         open={open}
         title='Post Article'
         description='Best place online to sell things'
@@ -285,9 +284,9 @@ export default function PostArticleModal() {
         body={body}
         secondaryActionLabel='Go back'
         actionLabel='Post Article'
-        onSubmit={() => {
-          postArticle();
-        }}
+        onSubmit={() =>
+         handleUpload()
+        }
       />
     </>
   );

@@ -11,6 +11,7 @@ interface Modal {
   secondaryAction?: () => void;
   body?: React.ReactElement;
   title: string;
+  isLoading: boolean
   description: string;
   closeModal?: () => void;
 }
@@ -18,6 +19,7 @@ export default function Modal({
   open,
   onSubmit,
   actionLabel,
+  isLoading,
   secondaryActionLabel,
   secondaryAction,
   body,
@@ -70,6 +72,7 @@ export default function Modal({
             />
           )}
           <Button
+           isLoading={isLoading}
             className={`  border-black text-black text-base hover:text-white hover:bg-black  py-3 w-[70%] border font-medium rounded-full hover:scale-[0.99] bg-white   transition-all`}
             labelClassName=''
             label={actionLabel}
