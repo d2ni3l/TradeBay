@@ -3,6 +3,7 @@ import Navbar from "../components/navbar/Navbar";
 import CategoryBox from "../components/categories/CategoryBox";
 import getCurrentUser from "../actions/getCurrentUser";
 import getAllArticles from "../actions/getAllArticles";
+import ListingCard from "../components/articles/ListingCard";
 
 export default async function page() {
   const currentUser = await getCurrentUser()
@@ -18,7 +19,11 @@ console.log(allArticles)
      <CategoryBox />
      
 
-     <div className="text-red-400">Hello world</div>
+     {allArticles.map((article) => {
+      return <>
+      <ListingCard article={article}/>
+      </>
+     })}
     </>
   );
 }

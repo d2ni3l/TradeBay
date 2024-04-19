@@ -3,8 +3,7 @@ import prisma from '@/lib/prismadb'
 
 
 
-export default async function  (){
-
+export default async function    (){
     try{
         const allArticle = await prisma.article.findMany({
             orderBy: {
@@ -23,7 +22,7 @@ export default async function  (){
         }))
     
         return safeListing
-    }catch(error){
+    } catch (error) {
    throw new Error
     }
 }
