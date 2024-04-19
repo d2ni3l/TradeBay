@@ -10,8 +10,15 @@ difficulties:
 auth: /createaccount should send you to /login to enter application
 
 
-
-
-
-
-
+ <div className='flex'>
+<span className='text-gray-900 font-bold text-sm'>Condition:</span>{" "}
+&nbsp;{" "}
+<span
+  className={`text-sm ${
+    article.condition === "new" && "text-green-500"
+  } ${article.condition === "acceptable" && "text-red-500"} ${
+    article.condition === "used" && "text-red-500"
+  }`}>
+  {article.category}
+</span>
+</div>

@@ -12,6 +12,7 @@ interface Button {
   iconSize?: number;
   labelClassName?: string;
  isLoading?: boolean
+ iconClassName?: string
   
 
   type?: "button" | "reset" | "submit";
@@ -25,7 +26,8 @@ export default function Button({
   labelClassName,
   onClick,
   type,
-  isLoading
+  isLoading,
+  iconClassName
 }: Button) {
   return (
     <button
@@ -36,7 +38,7 @@ export default function Button({
         className
       )}>
       {label && <span className={twMerge("flex items-center gap-3 justify-center", labelClassName)}>{isLoading && <LoadingSpinner color='#000' size={20} />} {label}</span>}
-      {Icon && <Icon size={iconSize} />}
+      {Icon && <Icon className={iconClassName} size={iconSize} />}
       
     </button>
   );

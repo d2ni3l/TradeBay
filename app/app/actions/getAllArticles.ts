@@ -19,7 +19,7 @@ export default async function    (){
                 createdAt: item.createdAt.toISOString()
             
         
-        }))
+        })) // changing value of item createdAt in object
     
         return safeListing
     } catch (error) {

@@ -6,32 +6,37 @@ import getAllArticles from "../actions/getAllArticles";
 import ListingCard from "../components/articles/ListingCard";
 
 export default async function page() {
-  const currentUser = await getCurrentUser()
-  const allArticles = await getAllArticles()
+  const currentUser = await getCurrentUser();
+  const allArticles = await getAllArticles();
 
-console.log(currentUser)
-console.log(allArticles)
+  console.log(currentUser);
+  console.log(allArticles);
   return (
     <>
       <Navbar />
-     
-    
-     <CategoryBox />
-     
 
-     {allArticles.map((article) => {
-      return <>
-      <ListingCard article={article}/>
-      </>
-     })}
+      <CategoryBox />
+
+      <div
+        className='
+        pt-10
+        mx-10
+            grid 
+            grid-cols-1 
+            sm:grid-cols-2 
+            md:grid-cols-3 
+            lg:grid-cols-4
+            xl:grid-cols-5
+            
+            gap-8'>
+        {allArticles.map((article) => {
+          return <ListingCard article={article} />;
+        })}
+      </div>
     </>
   );
 }
 
 const Loading = () => {
-   return (
-    <>
-    Loading...
-    </>
-   )
-}
+  return <>Loading...</>;
+};
