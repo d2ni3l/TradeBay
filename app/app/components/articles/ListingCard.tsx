@@ -9,7 +9,7 @@ import { FaCartShopping } from "react-icons/fa6";
 export default async function ({ article }: Article) {
   return (
     <>
-      <div className='w-full max-w-sm relative bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+      <div className='w-full max-w-sm relative bg-white border border-gray-200 rounded-lg shadow hover:shadow-xl dark:bg-gray-800 dark:border-gray-700'>
         <Badge className='absolute bg-gray-700 mt-2 mx-2'>{article.category}</Badge>
 
         <div className='justify-center flex'>

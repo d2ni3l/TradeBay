@@ -127,7 +127,10 @@ export default function LoginBox() {
           label='Create Account'
         />
 
-        <div className='pt-8'></div>
+
+<div className="flex justify-between items-center text-sm pt-5 pb-7">
+  <span>If you haven't registered yet</span> <span onClick={() => {router.push('/register')}} className='text-blue-500 text-medium cursor-pointer underline'>Register</span>
+</div>
       </form>
     </>
   );

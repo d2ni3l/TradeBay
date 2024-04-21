@@ -5,8 +5,10 @@ import MenuBar from "./MenuBar";
 import Container from "../Container";
 import { Separator } from "@/components/ui/separator";
 import NavMenu from "./NavMenu";
+import getCurrentUser from "@/app/actions/getCurrentUser";
+export default async function Navbar() {
 
-export default function Navbar() {
+  const currentUser = await getCurrentUser()
   return (
     <nav className='bg-[#3adbb9] md:bg-white'>
       <Container>
@@ -26,7 +28,7 @@ export default function Navbar() {
           <Search />
 
           <div className='hidden md:block'>
-            <NavMenu />
+            <NavMenu currentUser={currentUser} />
           </div>
           <div className='pb-3 md:hidden'></div>
         </div>
