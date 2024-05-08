@@ -39,11 +39,9 @@ export default function NavMenu({ currentUser }: User) {
       <DropdownMenu>
         {/* Account button */}
         <DropdownMenuTrigger className='outline-none'>
-          <Button
-            className='bg-white border border-gray-300 p-2 w-10 h-10 rounded-full flex justify-center items-center  text-gray-600'
-            iconSize={16}
-            icon={IoMdPerson}
-          />
+            <div className='bg-white border border-gray-300 p-2 w-10 h-10 rounded-full flex justify-center items-center  text-gray-600'>
+              <span> <IoMdPerson size={16}/> </span>
+            </div>
         </DropdownMenuTrigger>
 
         {currentUser?.email ? (
@@ -80,11 +78,11 @@ export default function NavMenu({ currentUser }: User) {
           <DropdownMenuContent>
             <DropdownMenuItem
               onClick={() => router.push("/login")}
-              className='flex  items-center flex-col'>
+              className='flex  items-center flex-col cursor-pointer'>
               <p className='font-bold text-center '>
                 You are not logged into TradeBay
               </p>
-              <span className='flex items-center gap-1  text-bold font-bold outline rounded-full px-3 py-2 mt-2'>
+              <span className='flex items-center gap-1  text-bold font-bold outline rounded-xl px-3 py-2 mt-2'>
                 <span>
                   <span className={lemon.className}>Login</span>
                 </span>{" "}

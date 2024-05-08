@@ -42,7 +42,7 @@ export default function RegisterBox() {
     onSuccess: () => {
       toast.success("Signed up");
 
-      router.push("/");
+      router.push("/login");
     },
 
     onSettled: () => {
