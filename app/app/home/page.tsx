@@ -9,7 +9,6 @@ export default async function page() {
   const currentUser = await getCurrentUser();
   const allArticles = await getAllArticles();
 
-  console.log(currentUser);
   console.log(allArticles);
   return (
     <>

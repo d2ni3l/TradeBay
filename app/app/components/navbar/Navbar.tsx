@@ -8,7 +8,7 @@ import NavMenu from "./NavMenu";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 export default async function Navbar() {
 
-  const currentUser = await getCurrentUser()
+  const currentUser = await getCurrentUser() 
   return (
     <nav className='bg-[#3adbb9] md:bg-white'>
       <Container>

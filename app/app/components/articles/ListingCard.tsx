@@ -7,6 +7,8 @@ import { FaCartShopping } from "react-icons/fa6";
 
 
 export default async function ({ article }: Article) {
+
+  
   return (
     <>
       <div className='w-full max-w-sm relative bg-white border border-gray-200 rounded-lg shadow hover:shadow-xl dark:bg-gray-800 dark:border-gray-700'>
@@ -15,7 +17,7 @@ export default async function ({ article }: Article) {
         <div className='justify-center flex'>
           <Image
             className='pt-8 pr-7 pl-7 pb-4 rounded-t-lg rounded-sm'
-            src={article.imgSrc}
+            src={article.imgSrc || 'https://placehold.co/600x400'}
             alt='Article Image'
             width='220'
             height='150'
