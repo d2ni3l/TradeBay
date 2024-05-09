@@ -14,7 +14,9 @@ export default async function page() {
     <>
       <Navbar />
 
-      <CategoryBox />
+      <Suspense fallback={<Loading/>}>
+        <CategoryBox />
+      </Suspense>
 
       <div
         className='
