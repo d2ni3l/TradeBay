@@ -40,6 +40,7 @@ export default function LoginBox() {
 
       if (callback?.ok && !callback?.error) {
         toast.success("Logged in successfully!");
+        router.push("/home");
       }
     });
   });
@@ -127,10 +128,16 @@ export default function LoginBox() {
           label='Create Account'
         />
 
-
-<div className="flex justify-between items-center text-sm pt-5 pb-7">
-  <span>If you haven't registered yet</span> <span onClick={() => {router.push('/createaccount')}} className='text-blue-500 text-medium cursor-pointer underline'>Register</span>
-</div>
+        <div className='flex justify-between items-center text-sm pt-5 pb-7'>
+          <span>If you haven't registered yet</span>{" "}
+          <span
+            onClick={() => {
+              router.push("/createaccount");
+            }}
+            className='text-blue-500 text-medium cursor-pointer underline'>
+            Register
+          </span>
+        </div>
       </form>
     </>
   );

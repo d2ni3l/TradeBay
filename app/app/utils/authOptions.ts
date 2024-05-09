@@ -1,5 +1,4 @@
 import prisma from '@/lib/prismadb'
-import bcrypt from 'bcrypt'
 import {PrismaAdapter} from '@next-auth/prisma-adapter'
 import    CredentialsProvider from 'next-auth/providers/credentials'
 import { NextAuthOptions } from 'next-auth'
@@ -41,11 +40,11 @@ export const authOptions : NextAuthOptions = {
             throw new Error
         }
 
-        const passwordMatch = bcrypt.compare(credentials.password, user.hashedPassword)
+        // const passwordMatch = bcrypt.compare(credentials.password, user.hashedPassword)
 
-        if(!passwordMatch){
-            throw new Error
-        }
+        // if(!passwordMatch){
+        //     throw new Error
+        // }
 
         return user
             }

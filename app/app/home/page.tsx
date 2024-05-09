@@ -28,7 +28,6 @@ export default async function page() {
             md:grid-cols-3 
             lg:grid-cols-4
             xl:grid-cols-5
-            
             gap-8'>
         {allArticles.map((article) => {
           return <ListingCard article={article} />;
