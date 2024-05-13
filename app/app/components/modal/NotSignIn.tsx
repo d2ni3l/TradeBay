@@ -31,7 +31,7 @@ export default function NotSignIn() {
         }}
         actionLabel='Login'
         title='Not Logged in yet'
-        description='Pls login create a new post'
+        description=' login create a new post'
       />
     </div>
   );

@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import ReactQueryProvider from "./components/QueryClientProvider";
 import { inter } from "./font";
 import PostArticleModal from "./components/modal/PostArticleModal";
+import NotSignIn from "./components/modal/NotSignIn";
 
 const metadata: Metadata = {
   title: "Trade Bay",
@@ -21,6 +22,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           <Toaster />
           <PostArticleModal/>
+          <NotSignIn/>
           {children}
         </ReactQueryProvider>
       </body>

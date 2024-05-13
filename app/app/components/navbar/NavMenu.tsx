@@ -19,24 +19,27 @@ import { FaCartShopping } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 import { MdLogin, MdLogout } from "react-icons/md";
 import { signOut } from "next-auth/react";
+import { NotSignInModal } from "@/app/hooks/NotSignInModal";
 export default function NavMenu({ currentUser }: User) {
   console.log(currentUser);
 
   const openPostModal = postArticleModal((state) => state.openModal);
+  const openNotSignInModal = NotSignInModal((state) => state.openModal);
 
-
-  function handlePost (){
-    if(!currentUser?.email){
-    
+  function handlePost() {
+    if (!currentUser?.email) {
+      openNotSignInModal();
+      console.log('not signed in')
     }
+
+    openPostModal();
   }
   const router = useRouter();
   return (
     <div className='flex justify-center gap-3'>
       <Button
         onClick={() => {
-          openPostModal();
-
+          handlePost();
         }}
         className='bg-white border border-gray-300 p-2 w-10 h-10 rounded-full flex justify-center items-center  text-gray-600'
         iconSize={16}
@@ -46,9 +49,12 @@ export default function NavMenu({ currentUser }: User) {
       <DropdownMenu>
         {/* Account button */}
         <DropdownMenuTrigger className='outline-none'>
-            <div className='bg-white border border-gray-300 p-2 w-10 h-10 rounded-full flex justify-center items-center  text-gray-600'>
-              <span> <IoMdPerson size={16}/> </span>
-            </div>
+          <div className='bg-white border border-gray-300 p-2 w-10 h-10 rounded-full flex justify-center items-center  text-gray-600'>
+            <span>
+              {" "}
+              <IoMdPerson size={16} />{" "}
+            </span>
+          </div>
         </DropdownMenuTrigger>
 
         {currentUser?.email ? (
