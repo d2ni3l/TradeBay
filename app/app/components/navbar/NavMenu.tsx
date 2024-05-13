@@ -22,14 +22,21 @@ import { signOut } from "next-auth/react";
 export default function NavMenu({ currentUser }: User) {
   console.log(currentUser);
 
-  const openModal = postArticleModal((state) => state.openModal);
+  const openPostModal = postArticleModal((state) => state.openModal);
 
+
+  function handlePost (){
+    if(!currentUser?.email){
+    
+    }
+  }
   const router = useRouter();
   return (
     <div className='flex justify-center gap-3'>
       <Button
         onClick={() => {
-          openModal();
+          openPostModal();
+
         }}
         className='bg-white border border-gray-300 p-2 w-10 h-10 rounded-full flex justify-center items-center  text-gray-600'
         iconSize={16}

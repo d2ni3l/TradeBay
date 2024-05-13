@@ -9,10 +9,10 @@ interface Modal {
   actionLabel?: string;
   secondaryActionLabel?: string;
   secondaryAction?: () => void;
-  body?: React.ReactElement;
+  body: React.ReactElement;
   title: string;
-  isLoading: boolean
-  description: string;
+  isLoading?: boolean
+  description?: string;
   closeModal?: () => void;
 }
 export default function Modal({
