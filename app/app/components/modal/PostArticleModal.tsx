@@ -25,7 +25,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { FaDollarSign } from "react-icons/fa6";
 import ImageUpload from "../Inputs/ImageUpload";
-
+import { useRouter } from "next/navigation";
 import Button from "../Button";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -33,7 +33,7 @@ import toast from "react-hot-toast";
 export default function PostArticleModal() {
   const open = postArticleModal((state) => state.open);
   const [missingValue, setMissingValue] = useState(false);
-
+  const router = useRouter()
   const selectCategoryUsed = [...selectCategory];
 
   const closeModal = postArticleModal((state) => state.closeModal); // global state with zustand
@@ -251,25 +251,34 @@ export default function PostArticleModal() {
     onSuccess: () => {
       console.log(data);
       toast.success("Article posted");
+
       closeModal();
+      router.refresh();
     },
     onError: (error) => {
-      console.log(error)
-      toast.error('Something went wrong')
-    }
+      console.log(error);
+      toast.error("Something went wrong");
+    },
   });
 
- const handleUpload = handleSubmit((data) => {
-  setMissingValue(false);
+  const handleUpload = handleSubmit((data) => {
+    setMissingValue(false);
 
-  if(!data.title || !data.description || !data.imgSrc || !data.price || !data.condition || !data.category){
-    setMissingValue(true)
+    if (
+      !data.title ||
+      !data.description ||
+      !data.imgSrc ||
+      !data.price ||
+      !data.condition ||
+      !data.category
+    ) {
+      setMissingValue(true);
 
-    return null
-  }
+      return null;
+    }
 
-  mutate(data)
- })
+    mutate(data);
+  });
 
   return (
     <>
@@ -284,9 +293,7 @@ export default function PostArticleModal() {
         body={body}
         secondaryActionLabel='Go back'
         actionLabel='Post Article'
-        onSubmit={() =>
-         handleUpload()
-        }
+        onSubmit={() => handleUpload()}
       />
     </>
   );
