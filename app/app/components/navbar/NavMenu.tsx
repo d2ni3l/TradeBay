@@ -29,10 +29,10 @@ export default function NavMenu({ currentUser }: User) {
   function handlePost() {
     if (!currentUser?.email) {
       openNotSignInModal();
-      console.log('not signed in')
+      console.log("not signed in");
+    } else {
+      openPostModal();
     }
-
-    openPostModal();
   }
   const router = useRouter();
   return (

@@ -29,7 +29,7 @@ export default function Modal({
 }: Modal) {
   return (
     <div
-      className={`absolute z-[100] bg-black/60 flex justify-center overflow-x-hidden w-full noscrollbar items-center ${
+      className={`absolute z-[100] bg-black/60 min-h-full md:pt-20 flex justify-center overflow-x-hidden w-full noscrollbar items-center ${
         open ? " " : "hidden z-0"
       }`}>
 
