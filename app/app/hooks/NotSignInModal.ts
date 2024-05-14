@@ -7,7 +7,7 @@ type NotSignInModal = {
 }
 
 export const NotSignInModal = create<NotSignInModal>((set) => ({
-    open : true,
+    open : false,
     closeModal: () => set({open : false}),
     openModal: () => set({open : true}),
 }))

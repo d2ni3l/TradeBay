@@ -22,14 +22,19 @@ export default function ({ article }: Article) {
             {article.category}
           </Badge>
 
-          <div className='rounded-full flex justify-center '>
-            <Image
+          <div style={{
+            backgroundImage: `url(${article.imgSrc})`,
+            backgroundPosition: 'center center',
+            backgroundSize: 'cover'
+
+          }} className=' w-full h-[220px]'>
+            {/* <Image
               width='200'
               height='200'
               alt=''
-              className='w-full h-auto rounded-t-sm'
-              src='https://res.cloudinary.com/dgoxla9tk/image/upload/v1715270709/cruxqihpgvrl2nejajr5.avif'
-            />
+              className='w-full  h-[200px] object-cover  rounded-t-sm'
+              src={article?.imgSrc}
+            /> */}
           </div>
 
           <div className='px-5 py-4'>
@@ -38,7 +43,7 @@ export default function ({ article }: Article) {
             </h5>
 
             <h6 className='text-sm font-semibold tracking-tight text-gray-900 dark:text-white capitalize'>
-              {TruncateString(article.description, 70)}
+              {TruncateString(article.description, 50)}
             </h6>
 
             <div className='pt-3'></div>

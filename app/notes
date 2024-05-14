@@ -24,3 +24,4 @@ auth: /createaccount should send you to /login to enter application
 </div>
 
 Things to do: 
+Rating section stars(number of user that rated)
