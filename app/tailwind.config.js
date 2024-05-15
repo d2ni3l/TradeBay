@@ -9,6 +9,13 @@ module.exports = {
   ],
   prefix: "",
   theme: {
+    backgroundSize: {
+      'auto': 'auto',
+      'cover': 'cover',
+      'contain': 'contain',
+      '100%': '100%',
+      '150%': '150%',
+    },
     container: {
       center: true,
       padding: "2rem",

@@ -16,8 +16,8 @@ import { FaCartShopping } from "react-icons/fa6";
 export default function ({ article }: Article) {
   return (
     <>
-      <div className='w-full max-w-sm relative rounded-lg'>
-        <div className=' bg-white border border-gray-200 rounded-sm  shadow hover:shadow-xl dark:bg-gray-800 dark:border-gray-700'>
+      <div className='w-full max-w-sm relative rounded-lg cursor-pointer '>
+        <div className=' bg-white rounded-md  shadow hover:shadow-xl dark:bg-gray-800 dark:border-gray-700'>
           <Badge className='absolute bg-gray-700 mt-2 mx-2'>
             {article.category}
           </Badge>
@@ -25,9 +25,8 @@ export default function ({ article }: Article) {
           <div style={{
             backgroundImage: `url(${article.imgSrc})`,
             backgroundPosition: 'center center',
-            backgroundSize: 'cover'
 
-          }} className=' w-full h-[220px]'>
+          }} className=' w-full h-[220px] bg-100% hover:bg-150% transition-all duration-300'>
             {/* <Image
               width='200'
               height='200'
