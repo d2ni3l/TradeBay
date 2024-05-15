@@ -24,6 +24,18 @@ model User {
 
   accounts Account[]
   article  Article[]
+  cart     Cart[]
+}
+
+model Cart {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  userId    String   @db.ObjectId
+
+  article Article @relation(fields: [articleId], references: [id])
+
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  articleId String @db.ObjectId
 }
 
 model Account {
@@ -54,9 +66,10 @@ model Article {
   title       String
   description String
   price       String
-  imgSrc    String
-  category  String
-  condition String
+  imgSrc      String
+  category    String
+  condition   String
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Cart Cart[]
 }
