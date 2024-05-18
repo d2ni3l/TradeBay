@@ -25,3 +25,13 @@ auth: /createaccount should send you to /login to enter application
 
 Things to do: 
 Rating section stars(number of user that rated)
+
+
+Cart array of object, we use email inside cart object to verify if it's that users cart with articleId
+
+Userwithcart : getAllCart then if currentUser matches a cart email dont create new cart
+
+then addtocart user with cart update cart with new article id 
+
+
+get cartarticle uses articleId inside cart to fetch article that matches cart articleId 

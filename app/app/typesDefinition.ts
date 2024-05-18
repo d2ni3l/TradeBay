@@ -18,8 +18,7 @@ export interface Article {
 
 }
 
-export interface User {
-   currentUser: {
+export type User = {
       createdAt: string;
       emailVerified: string | undefined;
       updatedAt: string;
@@ -30,5 +29,5 @@ export interface User {
       hashedPassword: string | null;
       favoriteIds: string[];
   } | null | undefined
-   }
+   
    
