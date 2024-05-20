@@ -18,7 +18,8 @@ export interface Article {
 
 }
 
-export type User = {
+export interface User {
+ currentUser:  {
       createdAt: string;
       emailVerified: string | undefined;
       updatedAt: string;
@@ -28,6 +29,9 @@ export type User = {
       image: string | null;
       hashedPassword: string | null;
       favoriteIds: string[];
+      cartIds: string[];
   } | null | undefined
+}
+      
    
    

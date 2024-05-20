@@ -1,16 +1,13 @@
 import AddtoCart from "./AddtoCart";
 
+import getCurrentUser from "../actions/getCurrentUser";
 
+export default async function Page() {
+  const currentUser = await getCurrentUser();
 
-
-export default function Page(){
-
-
-    return (
-
-        <div>
-
-            <AddtoCart/>
-        </div>
-    )
+  return (
+    <div>
+      <AddtoCart currentUser={currentUser} />
+    </div>
+  );
 }

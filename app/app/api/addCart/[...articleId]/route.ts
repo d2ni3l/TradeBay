@@ -1,8 +1,6 @@
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import prisma from "@/lib/prismadb";
 import { NextResponse } from "next/server";
-
-
+import prisma from '@/lib/prismadb'
+import getCurrentUser from "@/app/actions/getCurrentUser";
 
 
 export async function POST (request: Request, {params} : {params : {cartId: string}}){
@@ -28,7 +26,7 @@ export async function POST (request: Request, {params} : {params : {cartId: stri
         id: currentUser.id
      },
      data: {
-        cartIds
+        cartIds : cartIds
      }
 
     })
