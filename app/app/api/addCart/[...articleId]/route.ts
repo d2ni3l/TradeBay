@@ -4,6 +4,8 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 
 
 export async function POST (request: Request, {params} : {params : {cartId: string}}){
+
+
     const currentUser = await getCurrentUser()
 
 
@@ -32,4 +34,36 @@ export async function POST (request: Request, {params} : {params : {cartId: stri
     })
 
     return NextResponse.json(addCart)
+}
+
+
+export default async function DELETE({params}: {params: {articleId: string}}){
+
+
+    const currentUser = await getCurrentUser()
+
+    const {articleId} = params
+
+
+
+    if(!currentUser?.email){
+        return NextResponse.json({error: 'Not Signed In'})
+    }
+// remove an array value  thats == articleId 
+
+    const favoriteIds = currentUser.cartIds.filter( function(id)
+    {
+        return id !== articleId
+    })
+
+    const updatedUser = await prisma.user.update({
+        where: {
+            id: currentUser.id
+          },
+          data: {
+            favoriteIds
+          }  
+    })
+
+    return NextResponse.json(updatedUser)
 }

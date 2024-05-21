@@ -1,41 +1,33 @@
-"use client";
 
-import axios from "axios";
+'use client'
 import React from "react";
-import prisma from "@/lib/prismadb";
 import { User } from "../typesDefinition";
 import useCart from "../actions/useCart";
-import randFunction from "../randFunction";
 
-export default async function AddtoCart({ currentUser }: User) {
-
-
-const {itemInCart, toggleCart} = useCart({articleId: '', currentUser: currentUser})
+export default  function AddtoCart({ currentUser }: User) {
 
 
-// const  {boh, nah} = randFunction({user: 'id', id: 'user'})
- 
-  // const { itemInCart, toggleCart } = useCart({'id', currentUser});
-
-
-
-  const getCart = await prisma.article.findMany({
-    where: {
-      id: {
-        in: [...(currentUser?.favoriteIds || [])],
-      },
-    },
-  });
-
-  console.log(getCart);
+const {itemInCart, toggleCart} = useCart({articleId: '16828847', currentUser: currentUser})
 
   return (
     <div
-      onClick={() => {
-        axios.post("/api/addtocart/12345");
-      }}
+      onClick={
+        toggleCart
+      }
       className='p-3 bg-red-400 cursor-pointer focus:bg-green-500'>
-      Hello add to cart
+      {itemInCart() ? 'Item in cart' : 'No Item'}
+
+      
     </div>
   );
+}
+
+
+
+const Button = () =>  {
+  return <>
+  <button className='p-2 bg-purple-500 cursor-pointer' onClick={() => {}}>
+
+  </button>
+  </>
 }
